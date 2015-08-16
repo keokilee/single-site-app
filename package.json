@@ -15,7 +15,6 @@
     "babel": "^5.8.21",
     "electron-debug": "^0.1.1",
     "electron-mocha": "^0.3.0",
-    "esprima-fb": "^15001.1001.0-dev-harmony-fb",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.0",
     "gulp-jsxcs": "^0.1.9",
