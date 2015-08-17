@@ -1,6 +1,11 @@
 'use strict';
 
 import React from 'react';
+import WebView from './components/webview';
 
-React.render(<p>Electron version is {process.versions['electron-prebuilt']}</p>,
-  document.getElementById('content'));
+export let __hotReload = true;
+
+React.render(
+  <WebView/>,
+  document.getElementById('content')
+);

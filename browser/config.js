@@ -1,5 +1,5 @@
 System.config({
-  "baseURL": __dirname + "/",
+  "baseURL": "http://localhost:8080/",
   "transpiler": "babel",
   "babelOptions": {
     "optional": [
@@ -13,6 +13,8 @@ System.config({
     "npm:*": "jspm_packages/npm/*.js"
   }
 });
+
+System.trace = true;
 
 System.config({
   "map": {
