@@ -1,5 +1,5 @@
 System.config({
-  "baseURL": "http://localhost:8080/",
+  "baseURL": "/",
   "transpiler": "babel",
   "babelOptions": {
     "optional": [
