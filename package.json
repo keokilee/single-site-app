@@ -12,13 +12,16 @@
     "electron-prebuilt": "^0.30.4"
   },
   "devDependencies": {
+    "autoprefixer": "^5.2.0",
     "babel": "^5.8.21",
+    "cssnext": "^1.8.3",
     "electron-debug": "^0.1.1",
     "electron-mocha": "^0.3.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.0",
     "gulp-jsxcs": "^0.1.9",
     "gulp-load-plugins": "^0.10.0",
+    "gulp-postcss": "^5.1.10",
     "gulp-rename": "^1.2.2",
     "gulp-run": "^1.6.10",
     "jspm": "^0.15.7"
