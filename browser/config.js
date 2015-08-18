@@ -11,10 +11,9 @@ System.config({
     "*": "*.js",
     "github:*": "jspm_packages/github/*.js",
     "npm:*": "jspm_packages/npm/*.js"
-  }
+  },
+  "trace": true
 });
-
-System.trace = true;
 
 System.config({
   "map": {
@@ -184,3 +183,4 @@ System.config({
     }
   }
 });
+

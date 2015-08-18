@@ -20,6 +20,6 @@ app.on('ready', () => {
     height: 800,
   });
 
-  mainWindow.loadUrl('http://localhost:8080/index.html');
+  mainWindow.loadUrl('http://127.0.0.1:8080/index.html');
   mainWindow.on('closed', () => mainWindow = null);
 });

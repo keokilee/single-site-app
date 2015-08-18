@@ -2,6 +2,7 @@ import gulp from 'gulp';
 import plugins from 'gulp-load-plugins';
 import autoprefixer from 'autoprefixer';
 import cssnext from 'cssnext';
+import { start as startServer } from 'jspm-server';
 
 let {babel, run, rename, jsxcs, postcss} = plugins();
 
@@ -33,8 +34,14 @@ gulp.task('compile:css', () => {
 
 gulp.task('compile', ['compile:css', 'compile:js']);
 
-gulp.task('run', ['default'], () => {
+gulp.task('run:jspm', () => {
+  return startServer({open: false, root: `${__dirname}/browser/`});
+});
+
+gulp.task('run:electron', ['run:jspm'], () => {
   return run('electron .').exec();
 });
+
+gulp.task('run', ['default', 'run:electron']);
 
 gulp.task('default', ['compile']);
