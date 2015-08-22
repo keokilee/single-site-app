@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 
 export default class WebView extends React.Component {
