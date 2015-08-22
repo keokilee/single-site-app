@@ -25,7 +25,6 @@ module.exports = {
 
   plugins: [
     new webpack.NoErrorsPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.IgnorePlugin(/^(fs|ipc)$/),
     new StatsPlugin('build/stats.json', {
       chunkModules: true,

@@ -1,2 +1,2 @@
-require('electron-compile').init();
+require('babel/register');
 require('./scripts');
