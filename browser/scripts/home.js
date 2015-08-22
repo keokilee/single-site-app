@@ -3,9 +3,7 @@
 import React from 'react';
 import WebView from './components/webview';
 
-export let __hotReload = true;
-
 React.render(
-  <WebView/>,
-  document.getElementById('content')
+  <WebView url="http://www.github.com" />,
+  document.body
 );
