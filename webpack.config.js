@@ -13,6 +13,10 @@ module.exports = {
   },
 
   module: {
+    preLoaders: [
+      {test: /\.js$/, exclude: /node_modules/, loaders: ['eslint-loader']},
+      {test: /\.js$/, exclude: /node_modules/, loaders: ['flowcheck']},
+    ],
     loaders: [
       {test: /\.js$/, exclude: /node_modules/, loaders: ['react-hot', 'babel-loader']},
       {test: /\.html$/, loader: 'file?name=[name].[ext]'},
@@ -20,6 +24,7 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.NoErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.IgnorePlugin(/^(fs|ipc)$/),
     new StatsPlugin('build/stats.json', {
