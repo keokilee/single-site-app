@@ -17,9 +17,9 @@ app.on('window-all-closed', () => {
 app.on('ready', () => {
   mainWindow = new BrowserWindow({
     width: 800,
-    height: 800,
+    height: 800
   });
 
-  mainWindow.loadUrl('http://localhost:8080/index.html');
+  mainWindow.loadUrl('http://localhost:4000/');
   mainWindow.on('closed', () => mainWindow = null);
 });

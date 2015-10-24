@@ -4,15 +4,18 @@
   "description": "Electron application for creating single site applications.",
   "main": "app/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start-dev": "webpack-dev-server --hot --inline",
-    "start": "electron ."
+    "start-dev": "node dev_server.js",
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "George Lee",
   "license": "ISC",
   "dependencies": {
     "electron-prebuilt": "^0.30.4",
-    "react": "^0.13.3"
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "react-redux": "^4.0.0",
+    "redux": "^3.0.4"
   },
   "devDependencies": {
     "autoprefixer": "^5.2.0",
@@ -20,6 +23,7 @@
     "babel-core": "^5.8.22",
     "babel-eslint": "^4.0.10",
     "babel-loader": "^5.3.2",
+    "babel-plugin-react-transform": "^1.1.1",
     "electron-debug": "^0.1.1",
     "electron-mocha": "^0.3.0",
     "eslint": "^1.2.1",
@@ -28,12 +32,17 @@
     "eslint-loader": "^1.0.0",
     "eslint-plugin-react": "^3.2.3",
     "eslint-plugin-standard": "^1.2.0",
+    "express": "^4.13.3",
     "file-loader": "^0.8.4",
     "flowcheck": "^0.2.7",
     "flowcheck-loader": "^1.0.0",
-    "react-hot-loader": "^1.2.9",
+    "react-transform-catch-errors": "^1.0.0",
+    "react-transform-hmr": "^1.0.1",
+    "redbox-react": "^1.1.1",
+    "rimraf": "^2.4.3",
     "stats-webpack-plugin": "^0.2.1",
     "webpack": "^1.11.0",
-    "webpack-dev-server": "^1.10.1"
+    "webpack-dev-middleware": "^1.2.0",
+    "webpack-hot-middleware": "^2.4.1"
   }
 }
