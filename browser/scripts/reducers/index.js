@@ -8,6 +8,10 @@ State tree:
 import { combineReducers } from 'redux';
 import { SET_URL } from '../actions';
 
+function initialUrl(state = 'http://www.github.com') {
+  return state;
+}
+
 function currentUrl(state = 'http://www.github.com', action) {
   switch (action.type) {
     case SET_URL:
@@ -18,6 +22,7 @@ function currentUrl(state = 'http://www.github.com', action) {
 }
 
 const webviewApp = combineReducers({
+  initialUrl,
   currentUrl
 });
 

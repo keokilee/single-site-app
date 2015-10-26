@@ -5,20 +5,24 @@ import WebView from '../components/WebView';
 
 export default class App extends Component {
   render() {
-    const { currentUrl } = this.props;
+    const { initialUrl } = this.props;
 
     return (
-      <WebView url={currentUrl} />
+      <div>
+        <WebView url={initialUrl} />
+      </div>
     );
   }
 }
 
 App.propTypes = {
-  currentUrl: PropTypes.string.isRequired
+  currentUrl: PropTypes.string.isRequired,
+  initialUrl: PropTypes.string.isRequired
 };
 
 function select(state) {
   return {
+    initialUrl: state.initialUrl,
     currentUrl: state.currentUrl
   };
 }
