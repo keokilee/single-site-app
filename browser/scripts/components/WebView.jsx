@@ -2,12 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 export default class WebView extends React.Component {
-  setTitle(event) {
-    document.title = event.title;
+  setTitle({ title }) {
+    document.title = title;
   }
+
+  handleNavigation({ url, isMainFrame }) {
+    console.log(url);
+  }
+
   componentDidMount() {
-    ReactDOM.findDOMNode(this).addEventListener('page-title-set', this.setTitle);
+    const DOMNode = ReactDOM.findDOMNode(this);
+
+    DOMNode.addEventListener('page-title-set', this.setTitle);
+    DOMNode.addEventListener('load-commit', this.handleNavigation);
   }
+
   render() {
     return (<webview autosize='on' src={this.props.url}></webview>);
   }
