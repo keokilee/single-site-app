@@ -8,7 +8,7 @@ module.exports = {
   devtool: 'eval',
   entry: [
     'webpack-hot-middleware/client',
-    './browser/scripts/home.js'
+    './browser/scripts/main.jsx'
   ],
   module: {
     preLoaders: [{

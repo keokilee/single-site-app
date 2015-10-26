@@ -1,16 +1,30 @@
 'use strict';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import WebView from './components/webview';
+import { render } from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 
-class App extends React.Component {
-  render() {
-    return <WebView url='http://www.github.com' />;
+import webviewApp from './reducers';
+import App from './containers/App';
+
+function configureStore() {
+  const store = createStore(webviewApp);
+  if (module.hot) {
+    module.hot.accept('./reducers', () => {
+      const nextReducer = require('./reducers').webviewApp;
+      store.replaceReducer(nextReducer);
+    });
   }
-}
 
-ReactDOM.render(
-  <App />,
+  return store;
+};
+
+const store = configureStore();
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('app')
 );
