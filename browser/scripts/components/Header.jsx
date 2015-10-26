@@ -1,10 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 
 export default class Header extends Component {
+  styles() {
+    return {
+      backgroundColor: '#1A237E',
+      color: '#EFEFEF',
+      padding: '10px 15px'
+    };
+  }
+
   render() {
     return (
-      <div>
-        <h1>{this.props.url}</h1>
+      <div style={this.styles()}>
+        <h3 style={{ margin: 0 }}>{this.props.url}</h3>
       </div>
     );
   }
