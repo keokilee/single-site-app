@@ -1,25 +1,24 @@
 import React, { Component, PropTypes } from 'react';
+import CSSModules from 'react-css-modules';
 
+import styles from '../styles/header.css';
+console.log(styles);
+
+@CSSModules(styles)
 export default class Header extends Component {
-  styles() {
-    return {
-      backgroundColor: '#1A237E',
-      color: '#EFEFEF',
-      padding: '10px 15px'
-    };
-  }
-
   render() {
     return (
-      <div style={this.styles()}>
-        <button><i className='material-icons'>keyboard_arrow_left</i></button>
-        <button><i className='material-icons'>keyboard_arrow_right</i></button>
-        <h3 style={{ margin: 0, display: 'inline' }}>{this.props.url}</h3>
+      <div styleName='header'>
+        <button onClick={this.props.onBackButton}>
+          <i className='material-icons'>keyboard_arrow_left</i>
+        </button>
+        <h3>{this.props.url}</h3>
       </div>
     );
   }
 }
 
 Header.propTypes = {
+  onBackButton: PropTypes.func.isRequired,
   url: PropTypes.string.isRequired
 };

@@ -12,9 +12,13 @@ export default class App extends Component {
 
     return (
       <div>
-        <Header url={currentUrl} />
+        <Header
+          onBackButton={e => this._webView.handleBack(e)}
+          url={currentUrl}
+        />
         <WebView
           onChangeUrl={url => dispatch(setUrl(url))}
+          ref={c => this._webView = c}
           url={initialUrl}
         />
       </div>

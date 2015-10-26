@@ -17,6 +17,7 @@
   "dependencies": {
     "electron-prebuilt": "^0.30.4",
     "react": "^0.14.0",
+    "react-css-modules": "^3.6.0",
     "react-dom": "^0.14.0",
     "react-redux": "^4.0.0",
     "redux": "^3.0.4"
@@ -28,6 +29,7 @@
     "babel-eslint": "^4.0.10",
     "babel-loader": "^5.3.2",
     "babel-plugin-react-transform": "^1.1.1",
+    "css-loader": "^0.21.0",
     "electron-debug": "^0.1.1",
     "electron-mocha": "^0.3.0",
     "eslint": "^1.2.1",
@@ -37,6 +39,7 @@
     "eslint-plugin-react": "^3.2.3",
     "eslint-plugin-standard": "^1.2.0",
     "express": "^4.13.3",
+    "extract-text-webpack-plugin": "^0.8.2",
     "file-loader": "^0.8.4",
     "flowcheck": "^0.2.7",
     "flowcheck-loader": "^1.0.0",
@@ -45,6 +48,7 @@
     "redbox-react": "^1.1.1",
     "rimraf": "^2.4.3",
     "stats-webpack-plugin": "^0.2.1",
+    "style-loader": "^0.13.0",
     "webpack": "^1.11.0",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-hot-middleware": "^2.4.1"

@@ -1,0 +1,18 @@
+.header {
+  background-color: #1A237E;
+  color: #EFEFEF;
+  padding: 10px 15px;
+}
+
+.header h3 {
+  margin: 0;
+  margin-left: 20px;
+  display: inline-block;
+}
+
+.header button {
+  color: white;
+  background-color: transparent;
+  border: none;
+  padding: 5px 5px 0;
+}

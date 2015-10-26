@@ -6,6 +6,11 @@ export default class WebView extends Component {
     document.title = title;
   }
 
+  handleBack() {
+    const DOMNode = ReactDOM.findDOMNode(this);
+    DOMNode.goBack();
+  }
+
   handleNavigation({ url, isMainFrame }) {
     if (isMainFrame) {
       this.props.onChangeUrl(url);
@@ -20,7 +25,12 @@ export default class WebView extends Component {
   }
 
   render() {
-    return (<webview autosize='on' src={this.props.url}></webview>);
+    return (
+      <webview
+        autosize='on'
+        src={this.props.url}>
+      </webview>
+    );
   }
 }
 
