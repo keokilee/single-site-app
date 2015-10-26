@@ -1,6 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import CSSModules from 'react-css-modules';
 
+import styles from '../styles/webview.css';
+
+@CSSModules(styles)
 export default class WebView extends Component {
   setTitle({ title }) {
     document.title = title;
@@ -28,7 +32,8 @@ export default class WebView extends Component {
     return (
       <webview
         autosize='on'
-        src={this.props.url}>
+        src={this.props.url}
+        styleName='webview'>
       </webview>
     );
   }

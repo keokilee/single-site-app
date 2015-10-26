@@ -1,0 +1,6 @@
+.webview {
+  display: inline-block;
+  border: none;
+  width: 100vw;
+  height: 90vh;
+}

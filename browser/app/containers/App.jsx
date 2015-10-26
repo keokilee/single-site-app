@@ -11,16 +11,18 @@ export default class App extends Component {
     const { dispatch, initialUrl, currentUrl } = this.props;
 
     return (
-      <div>
+      <div style={{ overflow: 'auto' }}>
         <Header
           onBackButton={e => this._webView.handleBack(e)}
           url={currentUrl}
         />
-        <WebView
-          onChangeUrl={url => dispatch(setUrl(url))}
-          ref={c => this._webView = c}
-          url={initialUrl}
-        />
+      <div style={{ width: '100%', height: '100%' }}>
+          <WebView
+            onChangeUrl={url => dispatch(setUrl(url))}
+            ref={c => this._webView = c}
+            url={initialUrl}
+          />
+        </div>
       </div>
     );
   }
