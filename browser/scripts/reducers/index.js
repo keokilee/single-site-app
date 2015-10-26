@@ -1,6 +1,7 @@
 /*
 State tree:
 {
+  initialUrl
   currentUrl
   domainWhitelist
 }
