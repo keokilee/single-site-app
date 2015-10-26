@@ -4,14 +4,19 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 import WebView from '../components/WebView';
 
+import { setUrl } from '../actions';
+
 export default class App extends Component {
   render() {
-    const { initialUrl, currentUrl } = this.props;
+    const { dispatch, initialUrl, currentUrl } = this.props;
 
     return (
       <div>
         <Header url={currentUrl} />
-        <WebView url={initialUrl} />
+        <WebView
+          onChangeUrl={url => dispatch(setUrl(url))}
+          url={initialUrl}
+        />
       </div>
     );
   }
@@ -19,6 +24,7 @@ export default class App extends Component {
 
 App.propTypes = {
   currentUrl: PropTypes.string.isRequired,
+  dispatch: PropTypes.func,
   initialUrl: PropTypes.string.isRequired
 };
 

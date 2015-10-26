@@ -13,7 +13,7 @@ function initialUrl(state = 'http://www.github.com') {
   return state;
 }
 
-function currentUrl(state = 'http://www.github.com', action) {
+function currentUrl(state = '', action) {
   switch (action.type) {
     case SET_URL:
       return action.url;
