@@ -12,7 +12,9 @@ export default class Header extends Component {
   render() {
     return (
       <div style={this.styles()}>
-        <h3 style={{ margin: 0 }}>{this.props.url}</h3>
+        <button><i className='material-icons'>keyboard_arrow_left</i></button>
+        <button><i className='material-icons'>keyboard_arrow_right</i></button>
+        <h3 style={{ margin: 0, display: 'inline' }}>{this.props.url}</h3>
       </div>
     );
   }
