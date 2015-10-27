@@ -8,11 +8,12 @@ import { setUrl } from '../actions';
 
 export default class App extends Component {
   render() {
-    const { dispatch, initialUrl, currentUrl } = this.props;
+    const { dispatch, initialUrl, currentUrl, canGoBack } = this.props;
 
     return (
       <div style={{ overflow: 'auto' }}>
         <Header
+          enableBack={canGoBack}
           onBackButton={e => this._webView.handleBack(e)}
           url={currentUrl}
         />
@@ -29,6 +30,7 @@ export default class App extends Component {
 }
 
 App.propTypes = {
+  canGoBack: PropTypes.bool.isRequired,
   currentUrl: PropTypes.string.isRequired,
   dispatch: PropTypes.func,
   initialUrl: PropTypes.string.isRequired
@@ -37,7 +39,8 @@ App.propTypes = {
 function select(state) {
   return {
     initialUrl: state.initialUrl,
-    currentUrl: state.currentUrl
+    currentUrl: state.currentUrl,
+    canGoBack: state.canGoBack
   };
 }
 

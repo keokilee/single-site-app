@@ -3,6 +3,7 @@ State tree:
 {
   initialUrl
   currentUrl
+  canGoBack
   domainWhitelist
 }
 */
@@ -22,9 +23,19 @@ function currentUrl(state = '', action) {
   }
 }
 
+function canGoBack(state = false, action) {
+  switch (action.type) {
+    case SET_URL:
+      return true;
+    default:
+      return state;
+  }
+}
+
 const webviewApp = combineReducers({
   initialUrl,
-  currentUrl
+  currentUrl,
+  canGoBack
 });
 
 export default webviewApp;
