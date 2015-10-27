@@ -1,18 +1,29 @@
 .header {
   background-color: #1A237E;
   color: #EFEFEF;
-  padding: 10px 15px;
+  padding: 5px 15px;
+  display: flex;
+  align-items: flex-start;
 }
 
-.header h3 {
-  margin: 0;
-  margin-left: 20px;
-  display: inline-block;
+.button-cell {
+  flex: 0 0 50px;
 }
 
-.header button {
+.button-cell button {
   color: white;
   background-color: transparent;
   border: none;
   padding: 5px 5px 0;
+  cursor: pointer;
+}
+
+.title-cell {
+  flex: 1;
+  padding-top: 5px;
+}
+
+.title-cell p {
+  padding: 0;
+  margin: 0;
 }

@@ -8,10 +8,12 @@ export default class Header extends Component {
   render() {
     return (
       <div styleName='header'>
-        <button onClick={this.props.onBackButton}>
-          <i className='material-icons'>keyboard_arrow_left</i>
-        </button>
-        <h3>{this.props.url}</h3>
+        <div styleName='button-cell'>
+          <button onClick={this.props.onBackButton}>
+            <i className='material-icons'>keyboard_arrow_left</i>
+          </button>
+        </div>
+        <div styleName='title-cell'>{this.props.url}</div>
       </div>
     );
   }
