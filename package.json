@@ -6,6 +6,7 @@
   "scripts": {
     "start-dev": "node dev_server.js",
     "start": "electron .",
+    "build:osx": "electron-packager . SingleSiteApp --platform=darwin --arch=x64 --version=0.34.1 --out=build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -32,6 +33,7 @@
     "css-loader": "^0.21.0",
     "electron-debug": "^0.1.1",
     "electron-mocha": "^0.3.0",
+    "electron-packager": "^5.1.0",
     "eslint": "^1.2.1",
     "eslint-config-standard": "^4.1.0",
     "eslint-config-standard-react": "^1.0.4",
