@@ -2,7 +2,7 @@
 State tree:
 {
   initialUrl
-  currentUrl
+  history
   domainWhitelist
 }
 */
@@ -13,10 +13,10 @@ function initialUrl(state = 'http://www.github.com') {
   return state;
 }
 
-function currentUrl(state = '', action) {
+function history(state = [], action) {
   switch (action.type) {
     case SET_URL:
-      return action.url;
+      return [...state, action.url];
     default:
       return state;
   }
@@ -24,7 +24,7 @@ function currentUrl(state = '', action) {
 
 const webviewApp = combineReducers({
   initialUrl,
-  currentUrl
+  history
 });
 
 export default webviewApp;

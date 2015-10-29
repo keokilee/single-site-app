@@ -1,6 +1,12 @@
 .webview {
-  display: inline-block;
-  border: none;
-  width: 100vw;
-  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+.webview webview {
+  flex: 1;
+  margin-top: 40px;
+  height: 100%;
 }
