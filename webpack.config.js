@@ -24,7 +24,7 @@ module.exports = {
       loaders: ['babel']
     }, {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
+      loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
     }]
   },
   output: {
@@ -33,8 +33,6 @@ module.exports = {
     publicPath: '/static/'
   },
   plugins: [
-    new ExtractTextPlugin('app.css', { allChunks: true }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.IgnorePlugin(/^(fs|ipc)$/)
