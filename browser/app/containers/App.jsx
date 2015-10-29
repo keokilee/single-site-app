@@ -1,17 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import CSSModules from 'react-css-modules';
 
 import Header from '../components/Header';
 import WebView from '../components/WebView';
 
 import { setUrl } from '../actions';
+import styles from '../styles/app.css';
 
+@CSSModules(styles)
 export default class App extends Component {
   render() {
     const { dispatch, initialUrl, currentUrl, canGoBack } = this.props;
 
     return (
-      <div>
+      <div styleName='app'>
         <Header
           enableBack={canGoBack}
           onBackButton={e => this._webView.handleBack(e)}

@@ -22,7 +22,7 @@ export default class WebView extends Component {
   }
 
   componentDidMount() {
-    const DOMNode = ReactDOM.findDOMNode(this);
+    const DOMNode = this._webView;
 
     DOMNode.addEventListener('page-title-set', this.setTitle.bind(this));
     DOMNode.addEventListener('load-commit', this.handleNavigation.bind(this));
@@ -30,13 +30,12 @@ export default class WebView extends Component {
 
   render() {
     return (
-      <webview
-        autosize='on'
-        minheight='800'
-        minwidth='600'
-        src={this.props.url}
-        styleName='webview'>
-      </webview>
+      <div styleName='webview'>
+        <webview
+          autosize='on'
+          ref={c => this._webView = c}
+          src={this.props.url}></webview>
+      </div>
     );
   }
 }
