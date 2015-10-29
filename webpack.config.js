@@ -1,6 +1,4 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 const path = require('path');
 
 const BROWSER_DIR = path.join(__dirname, 'browser', 'app');
