@@ -1,12 +1,12 @@
-import app from 'app';
-import BrowserWindow from 'browser-window';
-import reporter from 'crash-reporter';
-import debug from 'electron-debug';
+'use strict';
+
+const app = require('app');
+const BrowserWindow = require('browser-window');
+const reporter = require('crash-reporter');
+const debug = require('debug');
 
 debug();
 reporter.start();
-
-let mainWindow;
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -15,8 +15,8 @@ app.on('window-all-closed', () => {
 });
 
 app.on('ready', () => {
-  mainWindow = new BrowserWindow({
-    width: 800,
+  let mainWindow = new BrowserWindow({
+    width: 1200,
     height: 800
   });
 

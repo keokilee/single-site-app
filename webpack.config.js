@@ -15,7 +15,7 @@ module.exports = {
   module: {
     preLoaders: [{
       test: /\.jsx?$/,
-      loader: 'eslint-loader',
+      loader: 'eslint',
       include: BROWSER_DIR
     }],
     loaders: [{
