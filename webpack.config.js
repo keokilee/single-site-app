@@ -21,7 +21,7 @@ module.exports = {
     loaders: [{
       test: /\.jsx?$/,
       include: BROWSER_DIR,
-      loaders: ['babel']
+      loader: 'babel'
     }, {
       test: /\.css$/,
       loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
