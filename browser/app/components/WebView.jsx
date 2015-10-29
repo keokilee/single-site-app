@@ -32,6 +32,8 @@ export default class WebView extends Component {
     return (
       <webview
         autosize='on'
+        minheight='800'
+        minwidth='600'
         src={this.props.url}
         styleName='webview'>
       </webview>
