@@ -11,8 +11,9 @@ import styles from '../styles/app.css';
 @CSSModules(styles)
 export default class App extends Component {
   render() {
-    const { dispatch, initialUrl, currentUrl, history } = this.props;
+    const { dispatch, initialUrl, history } = this.props;
     const canGoBack = history.length > 1;
+    const currentUrl = history[history.length - 1];
 
     return (
       <div styleName='app'>
@@ -32,7 +33,6 @@ export default class App extends Component {
 }
 
 App.propTypes = {
-  currentUrl: PropTypes.string.isRequired,
   dispatch: PropTypes.func,
   history: PropTypes.array.isRequired,
   initialUrl: PropTypes.string.isRequired
@@ -41,7 +41,6 @@ App.propTypes = {
 function select(state) {
   return {
     initialUrl: state.initialUrl,
-    currentUrl: state.currentUrl,
     history: state.history
   };
 }
