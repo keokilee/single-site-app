@@ -13,7 +13,7 @@
 }
 
 .button-cell {
-  flex: 0 0 50px;
+  flex: 0 0 100px;
 }
 
 .button-cell button {
@@ -22,6 +22,11 @@
   border: none;
   padding: 5px 5px 0;
   cursor: pointer;
+}
+
+.button-cell button:disabled {
+  cursor: default;
+  color: #AAA;
 }
 
 .title-cell {

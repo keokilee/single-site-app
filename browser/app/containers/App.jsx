@@ -12,14 +12,14 @@ import styles from '../styles/app.css';
 export default class App extends Component {
   render() {
     const { dispatch, initialUrl, history } = this.props;
-    const canGoBack = history.length > 1;
     const currentUrl = history[history.length - 1];
 
     return (
       <div styleName='app'>
         <Header
-          enableBack={canGoBack}
-          onBackButton={e => this._webView.handleBack(e)}
+          enableBack={() => this._webView && this._webView.canGoBack()}
+          onBack={e => this._webView.handleBack(e)}
+          onRefresh={e => this._webView.handleRefresh(e)}
           url={currentUrl}
         />
         <WebView

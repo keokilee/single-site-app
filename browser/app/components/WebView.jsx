@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
 import CSSModules from 'react-css-modules';
 
 import styles from '../styles/webview.css';
@@ -10,9 +9,20 @@ export default class WebView extends Component {
     document.title = title;
   }
 
+  canGoBack() {
+    if (this._webView) {
+      return this._webView.canGoBack();
+    }
+
+    return false;
+  }
+
   handleBack() {
-    const DOMNode = ReactDOM.findDOMNode(this);
-    DOMNode.goBack();
+    this._webView.goBack();
+  }
+
+  handleRefresh() {
+    this._webView.reload();
   }
 
   handleNavigation({ url, isMainFrame }) {
