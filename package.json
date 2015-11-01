@@ -35,7 +35,7 @@
     "eslint": "^1.8.0",
     "eslint-config-standard": "^4.1.0",
     "eslint-config-standard-react": "^1.0.4",
-    "eslint-loader": "^1.0.0",
+    "eslint-loader": "^1.1.1",
     "eslint-plugin-react": "^3.2.3",
     "eslint-plugin-standard": "^1.2.0",
     "express": "^4.13.3",
