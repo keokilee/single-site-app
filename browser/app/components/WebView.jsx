@@ -17,8 +17,20 @@ export default class WebView extends Component {
     return false;
   }
 
+  canGoForward() {
+    if (this._webView) {
+      return this._webView.canGoForward();
+    }
+
+    return false;
+  }
+
   handleBack() {
     this._webView.goBack();
+  }
+
+  handleForward() {
+    this._webView.goForward();
   }
 
   handleRefresh() {

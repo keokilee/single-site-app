@@ -18,7 +18,9 @@ export default class App extends Component {
       <div styleName='app'>
         <Header
           enableBack={() => this._webView && this._webView.canGoBack()}
+          enableForward={() => this._webView && this._webView.canGoForward()}
           onBack={e => this._webView.handleBack(e)}
+          onForward={e => this._webView.handleForward(e)}
           onRefresh={e => this._webView.handleRefresh(e)}
           url={currentUrl}
         />
