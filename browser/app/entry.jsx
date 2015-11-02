@@ -9,8 +9,11 @@ import { Provider } from 'react-redux';
 import webviewApp from './reducers';
 import App from './containers/App';
 
+import config from './config.js';
+
 function configureStore() {
-  const store = createStore(webviewApp);
+  const url = config.url;
+  const store = createStore(webviewApp, { initialUrl: url });
   if (module.hot) {
     module.hot.accept('./reducers', () => {
       const nextReducer = require('./reducers').webviewApp;
