@@ -8,6 +8,8 @@ import WebView from '../components/WebView';
 import { setUrl } from '../actions';
 import styles from '../styles/app.css';
 
+import config from '../config';
+
 @CSSModules(styles)
 export default class App extends Component {
   render() {
@@ -27,6 +29,7 @@ export default class App extends Component {
         <WebView
           onChangeUrl={url => dispatch(setUrl(url))}
           ref={c => this._webView = c}
+          sessionNamespace={config.sessionNamespace}
           url={initialUrl}
         />
       </div>

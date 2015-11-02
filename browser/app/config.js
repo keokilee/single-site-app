@@ -1,3 +1,4 @@
 export default {
-  url: 'https://www.facebook.com'
+  url: 'https://www.facebook.com',
+  sessionNamespace: 'facebook'
 };

@@ -55,6 +55,7 @@ export default class WebView extends Component {
       <div styleName='webview'>
         <webview
           autosize='on'
+          partition={'persist:' + this.props.sessionNamespace}
           ref={c => this._webView = c}
           src={this.props.url}></webview>
       </div>
@@ -64,5 +65,6 @@ export default class WebView extends Component {
 
 WebView.propTypes = {
   onChangeUrl: PropTypes.func.isRequired,
+  sessionNamespace: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired
 };
