@@ -4,10 +4,11 @@
   "description": "Electron application for creating single site applications.",
   "main": "app/index.js",
   "scripts": {
+    "lint": "eslint . --ext .js --ext .jsx",
     "start-dev": "node dev_server.js",
     "start": "electron .",
     "build:osx": "electron-packager . SingleSiteApp --platform=darwin --arch=x64 --version=0.34.1 --out=build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run lint"
   },
   "repository": {
     "type": "git",
