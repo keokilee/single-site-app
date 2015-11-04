@@ -39,7 +39,7 @@
     "eslint-plugin-react": "^3.2.3",
     "eslint-plugin-standard": "^1.2.0",
     "express": "^4.13.3",
-    "extract-text-webpack-plugin": "^0.8.2",
+    "extract-text-webpack-plugin": "^0.9.1",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",
     "redbox-react": "^1.1.1",
