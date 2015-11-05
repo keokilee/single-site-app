@@ -5,13 +5,15 @@ import CSSModules from 'react-css-modules';
 import Header from '../components/Header';
 import WebView from '../components/WebView';
 
-import { setUrl } from '../actions';
+import { setUrl, setLoading } from '../actions';
 import styles from '../styles/app.css';
+
+import config from '../config';
 
 @CSSModules(styles)
 export default class App extends Component {
   render() {
-    const { dispatch, initialUrl, history } = this.props;
+    const { dispatch, initialUrl, history, loading } = this.props;
     const currentUrl = history[history.length - 1];
 
     return (
@@ -19,14 +21,18 @@ export default class App extends Component {
         <Header
           enableBack={() => this._webView && this._webView.canGoBack()}
           enableForward={() => this._webView && this._webView.canGoForward()}
+          loading={loading}
           onBack={e => this._webView.handleBack(e)}
           onForward={e => this._webView.handleForward(e)}
           onRefresh={e => this._webView.handleRefresh(e)}
+          onStop={e => this._webView.handleStop(e)}
           url={currentUrl}
         />
         <WebView
           onChangeUrl={url => dispatch(setUrl(url))}
           ref={c => this._webView = c}
+          sessionNamespace={config.sessionNamespace}
+          setLoading={l => dispatch(setLoading(l))}
           url={initialUrl}
         />
       </div>
@@ -37,13 +43,15 @@ export default class App extends Component {
 App.propTypes = {
   dispatch: PropTypes.func,
   history: PropTypes.array.isRequired,
-  initialUrl: PropTypes.string.isRequired
+  initialUrl: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 function select(state) {
   return {
     initialUrl: state.initialUrl,
-    history: state.history
+    history: state.history,
+    loading: state.loading
   };
 }
 

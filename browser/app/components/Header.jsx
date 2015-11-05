@@ -7,7 +7,7 @@ import styles from '../styles/header.css';
 export default class Header extends Component {
   render() {
     const {
-      enableBack, onBack, onRefresh, url, enableForward, onForward
+      enableBack, onBack, onRefresh, onStop, url, enableForward, loading, onForward
     } = this.props;
 
     return (
@@ -19,8 +19,11 @@ export default class Header extends Component {
           <button disabled={!enableForward()} onClick={onForward}>
             <i className='material-icons'>keyboard_arrow_right</i>
           </button>
-          <button onClick={onRefresh}>
+          <button hidden={loading} onClick={onRefresh}>
             <i className='material-icons'>refresh</i>
+          </button>
+          <button hidden={!loading} onClick={onStop}>
+            <i className='material-icons'>clear</i>
           </button>
         </div>
         <div styleName='title-cell'>{url}</div>
@@ -32,8 +35,10 @@ export default class Header extends Component {
 Header.propTypes = {
   enableBack: PropTypes.func,
   enableForward: PropTypes.func,
+  loading: PropTypes.bool.isRequired,
   onBack: PropTypes.func.isRequired,
   onForward: PropTypes.func,
-  onRefresh: PropTypes.func.isRequired,
+  onRefresh: PropTypes.func,
+  onStop: PropTypes.func,
   url: PropTypes.string
 };
