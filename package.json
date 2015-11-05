@@ -49,7 +49,7 @@
     "redbox-react": "^1.1.1",
     "rimraf": "^2.4.3",
     "style-loader": "^0.13.0",
-    "webpack": "^1.11.0",
+    "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-hot-middleware": "^2.4.1"
   }
