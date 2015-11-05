@@ -37,6 +37,10 @@ export default class WebView extends Component {
     this._webView.reload();
   }
 
+  handleStop() {
+    this._webView.stop();
+  }
+
   handleNavigation({ url, isMainFrame }) {
     if (isMainFrame) {
       this.props.onChangeUrl(url);
@@ -44,10 +48,13 @@ export default class WebView extends Component {
   }
 
   componentDidMount() {
-    const DOMNode = this._webView;
+    const { setLoading } = this.props;
 
-    DOMNode.addEventListener('page-title-set', this.setTitle.bind(this));
-    DOMNode.addEventListener('load-commit', this.handleNavigation.bind(this));
+    this._webView.addEventListener('page-title-set', this.setTitle.bind(this));
+    this._webView.addEventListener('load-commit', this.handleNavigation.bind(this));
+    this._webView.addEventListener('did-start-loading', setLoading.bind(this, true));
+    this._webView.addEventListener('did-finish-load', setLoading.bind(this, false));
+    this._webView.addEventListener('did-fail-load', setLoading.bind(this, false));
   }
 
   render() {
@@ -66,5 +73,6 @@ export default class WebView extends Component {
 WebView.propTypes = {
   onChangeUrl: PropTypes.func.isRequired,
   sessionNamespace: PropTypes.string.isRequired,
+  setLoading: PropTypes.func.isRequired,
   url: PropTypes.string.isRequired
 };
