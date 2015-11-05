@@ -33,7 +33,7 @@
     "babel-plugin-react-transform": "^1.1.1",
     "css-loader": "^0.22.0",
     "electron-debug": "^0.3.1",
-    "electron-mocha": "^0.5.1",
+    "electron-mocha": "^0.6.0",
     "electron-packager": "^5.1.1",
     "eslint": "^1.8.0",
     "eslint-config-standard": "^4.1.0",
