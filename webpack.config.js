@@ -5,7 +5,7 @@ const BROWSER_DIR = path.join(__dirname, 'browser', 'app');
 
 module.exports = {
   debug: true,
-  devtool: 'source-map',
+  devtool: 'eval',
   entry: [
     'webpack-hot-middleware/client',
     './browser/app/entry.jsx'

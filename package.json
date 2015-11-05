@@ -4,10 +4,13 @@
   "description": "Electron application for creating single site applications.",
   "main": "app/index.js",
   "scripts": {
+    "lint": "eslint . --ext .js --ext .jsx",
     "start-dev": "node dev_server.js",
     "start": "electron .",
     "build:osx": "electron-packager . SingleSiteApp --platform=darwin --arch=x64 --version=0.34.1 --out=build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run lint",
+    "test:app": "electron-mocha ./spec/app",
+    "test:browser": "electron-mocha --renderer ./spec/browser"
   },
   "repository": {
     "type": "git",
@@ -17,19 +20,19 @@
   "license": "ISC",
   "dependencies": {
     "electron-prebuilt": "^0.34.2",
-    "react": "^0.14.0",
+    "react": "^0.14.2",
     "react-css-modules": "^3.6.0",
-    "react-dom": "^0.14.0",
+    "react-dom": "^0.14.2",
     "react-redux": "^4.0.0",
     "redux": "^3.0.4"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
-    "babel-eslint": "^4.0.10",
+    "babel-eslint": "^4.1.4",
     "babel-loader": "^5.3.3",
     "babel-plugin-react-transform": "^1.1.1",
     "css-loader": "^0.22.0",
-    "electron-debug": "^0.3.0",
+    "electron-debug": "^0.3.1",
     "electron-mocha": "^0.5.1",
     "electron-packager": "^5.1.1",
     "eslint": "^1.8.0",
@@ -38,14 +41,15 @@
     "eslint-loader": "^1.1.1",
     "eslint-plugin-react": "^3.2.3",
     "eslint-plugin-standard": "^1.2.0",
+    "expect.js": "^0.3.1",
     "express": "^4.13.3",
-    "extract-text-webpack-plugin": "^0.8.2",
+    "extract-text-webpack-plugin": "^0.9.0",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",
     "redbox-react": "^1.1.1",
     "rimraf": "^2.4.3",
     "style-loader": "^0.13.0",
-    "webpack": "^1.11.0",
+    "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-hot-middleware": "^2.4.1"
   }
