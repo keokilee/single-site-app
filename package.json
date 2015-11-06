@@ -8,7 +8,7 @@
     "start-dev": "node dev_server.js",
     "start": "electron .",
     "build:osx": "electron-packager . SingleSiteApp --platform=darwin --arch=x64 --version=0.34.1 --out=build",
-    "test": "npm run lint",
+    "test": "npm run lint && npm run test:app && npm run test:browser",
     "test:app": "electron-mocha ./spec/app",
     "test:browser": "electron-mocha --renderer ./spec/browser"
   },
