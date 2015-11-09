@@ -35,7 +35,7 @@
     "electron-debug": "^0.3.1",
     "electron-mocha": "^0.6.1",
     "electron-packager": "^5.1.1",
-    "eslint": "^1.8.0",
+    "eslint": "^1.9.0",
     "eslint-config-standard": "^4.1.0",
     "eslint-config-standard-react": "^1.0.4",
     "eslint-loader": "^1.1.1",
