@@ -1,16 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import CSSModules from 'react-css-modules';
 
 import Header from '../components/Header';
 import WebView from '../components/WebView';
 
 import { setUrl, setLoading } from '../actions';
-import styles from '../styles/app.css';
 
 import config from '../config';
 
-@CSSModules(styles)
 export default class App extends Component {
   render() {
     const { dispatch, initialUrl, history, loading } = this.props;
