@@ -9,7 +9,8 @@
     "start": "electron .",
     "build:osx": "electron-packager . SingleSiteApp --platform=darwin --arch=x64 --version=0.34.1 --out=build",
     "test": "npm run lint && npm run test:browser",
-    "test:browser": "BABEL_ENV=test karma start"
+    "test:browser": "BABEL_ENV=test karma start",
+    "test:watch": "BABEL_ENV=test karma start --auto-watch --no-single-run"
   },
   "repository": {
     "type": "git",
