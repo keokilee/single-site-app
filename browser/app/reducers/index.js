@@ -4,12 +4,20 @@ State tree:
   initialUrl
   history
   domainWhitelist
+  favicon
 }
 */
 import { combineReducers } from 'redux';
-import { SET_URL, SET_LOADING } from '../actions';
 
-function initialUrl(state = 'http://www.github.com') {
+import {
+  SET_URL,
+  SET_LOADING,
+  UPDATE_WHITELIST,
+  SET_NAMESPACE,
+  SET_FAVICON
+} from '../actions';
+
+function initialUrl(state = '') {
   return state;
 }
 
@@ -31,10 +39,40 @@ function history(state = [], { type, url }) {
   }
 }
 
+function whitelist(state = new Set(), { type, host }) {
+  switch (type) {
+    case UPDATE_WHITELIST:
+      return new Set([...state, host]);
+    default:
+      return state;
+  }
+}
+
+function sessionNamespace(state = '', { type, namespace }) {
+  switch (type) {
+    case SET_NAMESPACE:
+      return namespace;
+    default:
+      return state;
+  }
+}
+
+function favicon(state = '', { type, favicon }) {
+  switch (type) {
+    case SET_FAVICON:
+      return favicon;
+    default:
+      return state;
+  }
+}
+
 const webviewApp = combineReducers({
   initialUrl,
+  favicon,
   history,
-  loading
+  loading,
+  sessionNamespace,
+  whitelist
 });
 
 export default webviewApp;

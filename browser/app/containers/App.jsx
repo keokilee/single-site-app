@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 import WebView from '../components/WebView';
 
-import { setUrl, setLoading } from '../actions';
+import { setUrl, setLoading, setFavicon } from '../actions';
 
 import config from '../config';
 
 export default class App extends Component {
   render() {
-    const { dispatch, initialUrl, history, loading } = this.props;
+    const { dispatch, initialUrl, history, loading, favicon } = this.props;
     const currentUrl = history[history.length - 1];
 
     return (
@@ -18,6 +18,7 @@ export default class App extends Component {
         <Header
           enableBack={() => this._webView && this._webView.canGoBack()}
           enableForward={() => this._webView && this._webView.canGoForward()}
+          favicon={favicon}
           loading={loading}
           onBack={e => this._webView.handleBack(e)}
           onForward={e => this._webView.handleForward(e)}
@@ -29,6 +30,7 @@ export default class App extends Component {
           onChangeUrl={url => dispatch(setUrl(url))}
           ref={c => this._webView = c}
           sessionNamespace={config.sessionNamespace}
+          setFavicon={i => dispatch(setFavicon(i))}
           setLoading={l => dispatch(setLoading(l))}
           url={initialUrl}
         />
@@ -39,6 +41,7 @@ export default class App extends Component {
 
 App.propTypes = {
   dispatch: PropTypes.func,
+  favicon: PropTypes.string,
   history: PropTypes.array.isRequired,
   initialUrl: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired
@@ -48,7 +51,8 @@ function select(state) {
   return {
     initialUrl: state.initialUrl,
     history: state.history,
-    loading: state.loading
+    loading: state.loading,
+    favicon: state.favicon
   };
 }
 

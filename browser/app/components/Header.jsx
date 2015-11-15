@@ -7,7 +7,15 @@ import styles from '../styles/header.css';
 export default class Header extends Component {
   render() {
     const {
-      enableBack, onBack, onRefresh, onStop, url, enableForward, loading, onForward
+      enableBack,
+      favicon,
+      onBack,
+      onRefresh,
+      onStop,
+      url,
+      enableForward,
+      loading,
+      onForward
     } = this.props;
 
     return (
@@ -26,7 +34,10 @@ export default class Header extends Component {
             <i className='material-icons'>clear</i>
           </button>
         </div>
-        <div styleName='title-cell'>{url}</div>
+        <div styleName='title-cell'>
+          <img src={favicon} />
+          {url}
+        </div>
       </div>
     );
   }
@@ -35,6 +46,7 @@ export default class Header extends Component {
 Header.propTypes = {
   enableBack: PropTypes.func,
   enableForward: PropTypes.func,
+  favicon: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   onBack: PropTypes.func.isRequired,
   onForward: PropTypes.func,

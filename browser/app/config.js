@@ -1,4 +1,5 @@
 export default {
-  url: 'https://www.facebook.com',
-  sessionNamespace: 'facebook'
+  url: 'https://www.github.com',
+  sessionNamespace: 'github',
+  whitelist: ['github.com']
 };

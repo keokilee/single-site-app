@@ -19,8 +19,13 @@ const createDebugStore = compose(
 )(createStore);
 
 function configureStore() {
-  const url = config.url;
-  const store = createDebugStore(webviewApp, { initialUrl: url });
+  const { url, whitelist, sessionNamespace } = config;
+  const setList = new Set(whitelist);
+  const store = createDebugStore(webviewApp, {
+    initialUrl: url,
+    sessionNamespace: sessionNamespace,
+    whitelist: setList
+  });
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {
