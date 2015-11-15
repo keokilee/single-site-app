@@ -28,7 +28,7 @@ describe('Header', () => {
 
       // div is the third one
       const titleBar = scryRenderedDOMComponentsWithTag(header, 'div')[2];
-      expect(titleBar.props.children).toEqual(url);
+      expect(titleBar.textContent).toEqual(url);
     });
   });
 
