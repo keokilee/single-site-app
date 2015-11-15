@@ -2,8 +2,10 @@
 State tree:
 {
   initialUrl
+  loading
   history
-  domainWhitelist
+  whitelist
+  sessionNamespace
   favicon
 }
 */
@@ -12,8 +14,6 @@ import { combineReducers } from 'redux';
 import {
   SET_URL,
   SET_LOADING,
-  UPDATE_WHITELIST,
-  SET_NAMESPACE,
   SET_FAVICON
 } from '../actions';
 
@@ -39,24 +39,6 @@ function history(state = [], { type, url }) {
   }
 }
 
-function whitelist(state = new Set(), { type, host }) {
-  switch (type) {
-    case UPDATE_WHITELIST:
-      return new Set([...state, host]);
-    default:
-      return state;
-  }
-}
-
-function sessionNamespace(state = '', { type, namespace }) {
-  switch (type) {
-    case SET_NAMESPACE:
-      return namespace;
-    default:
-      return state;
-  }
-}
-
 function favicon(state = '', { type, favicon }) {
   switch (type) {
     case SET_FAVICON:
@@ -70,9 +52,7 @@ const webviewApp = combineReducers({
   initialUrl,
   favicon,
   history,
-  loading,
-  sessionNamespace,
-  whitelist
+  loading
 });
 
 export default webviewApp;

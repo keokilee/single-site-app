@@ -1,5 +1,5 @@
 export default {
-  url: 'https://www.github.com',
-  sessionNamespace: 'github',
-  whitelist: ['github.com']
+  url: 'https://www.theverge.com',
+  sessionNamespace: 'theverge',
+  whitelist: ['theverge.com']
 };

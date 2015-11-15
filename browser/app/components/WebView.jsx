@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
 
 import styles from '../styles/webview.css';
+import shell from 'shell';
 
 @CSSModules(styles)
 export default class WebView extends Component {
@@ -10,7 +11,7 @@ export default class WebView extends Component {
   }
 
   faviconUpdated({ favicons }) {
-    this.props.setFavicon(favicons[0]);
+    // this.props.setFavicon(favicons[0]);
   }
 
   canGoBack() {
@@ -39,6 +40,21 @@ export default class WebView extends Component {
 
   handleNavigation({ url, isMainFrame }) {
     if (isMainFrame) {
+      const { canNavigate } = this.props;
+      console.log('navigating from ', this._webView.src, ' to ', url);
+      if (this._webView.src !== url && !canNavigate(url)) {
+        this._webView.stop();
+        shell.openExternal(url);
+
+        // SUCH A HACK!!!
+        // Currently, there is no event to handle possibility of navigation.
+        const original = this._webView.src;
+        setTimeout(() => {
+          this._webView.src = original;
+        }, 1);
+
+        return false;
+      }
       this.props.onChangeUrl(url);
     }
   }
@@ -60,6 +76,7 @@ export default class WebView extends Component {
       <div styleName='webview'>
         <webview
           autosize='on'
+          nodeintegration='true'
           partition={'persist:' + sessionNamespace}
           ref={c => this._webView = c}
           src={url}></webview>
@@ -69,6 +86,7 @@ export default class WebView extends Component {
 }
 
 WebView.propTypes = {
+  canNavigate: PropTypes.func,
   onChangeUrl: PropTypes.func.isRequired,
   sessionNamespace: PropTypes.string.isRequired,
   setFavicon: PropTypes.func,

@@ -5,7 +5,7 @@
   "main": "app/index.js",
   "scripts": {
     "lint": "eslint . --ext .js --ext .jsx",
-    "start-dev": "node dev_server.js",
+    "start:dev": "node dev_server.js",
     "start": "electron .",
     "build:osx": "electron-packager . SingleSiteApp --platform=darwin --arch=x64 --version=0.34.1 --out=dist",
     "test": "npm run lint && npm run test:browser",

@@ -19,12 +19,9 @@ const createDebugStore = compose(
 )(createStore);
 
 function configureStore() {
-  const { url, whitelist, sessionNamespace } = config;
-  const setList = new Set(whitelist);
+  const { url } = config;
   const store = createDebugStore(webviewApp, {
-    initialUrl: url,
-    sessionNamespace: sessionNamespace,
-    whitelist: setList
+    initialUrl: url
   });
 
   if (module.hot) {

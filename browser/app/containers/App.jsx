@@ -7,11 +7,13 @@ import WebView from '../components/WebView';
 import { setUrl, setLoading, setFavicon } from '../actions';
 
 import config from '../config';
+import whitelist from '../whitelist';
 
 export default class App extends Component {
   render() {
     const { dispatch, initialUrl, history, loading, favicon } = this.props;
     const currentUrl = history[history.length - 1];
+    const canNavigate = whitelist(config.whitelist);
 
     return (
       <div styleName='app'>
@@ -27,6 +29,7 @@ export default class App extends Component {
           url={currentUrl}
         />
         <WebView
+          canNavigate={url => canNavigate(url)}
           onChangeUrl={url => dispatch(setUrl(url))}
           ref={c => this._webView = c}
           sessionNamespace={config.sessionNamespace}
