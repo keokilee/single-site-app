@@ -33,10 +33,10 @@ export default class Header extends Component {
 }
 
 Header.propTypes = {
-  enableBack: PropTypes.func,
-  enableForward: PropTypes.func,
-  loading: PropTypes.bool.isRequired,
-  onBack: PropTypes.func.isRequired,
+  enableBack: PropTypes.func.isRequired,
+  enableForward: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
+  onBack: PropTypes.func,
   onForward: PropTypes.func,
   onRefresh: PropTypes.func,
   onStop: PropTypes.func,

@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const BROWSER_DIR = path.join(__dirname, 'browser', 'app');
+const BROWSER_DIR = path.join(__dirname, '..', 'browser', 'app');
 
 module.exports = {
   debug: true,
