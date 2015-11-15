@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const path = require('path');
 
 const BROWSER_DIR = path.join(__dirname, '..', 'browser', 'app');
@@ -11,10 +10,6 @@ module.exports = {
   module: {
     preLoaders: [{
       test: /\.jsx?$/,
-      loader: 'eslint',
-      include: BROWSER_DIR
-    }, {
-      test: /\.jsx?$/,
       loaders: ['isparta-instrumenter'],
       include: BROWSER_DIR
     }],
@@ -23,6 +18,9 @@ module.exports = {
       include: BROWSER_DIR,
       loader: 'babel'
     }, {
+      test: /\.css$/,
+      loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+    }, {
       test: /\.jsx?$/,
       include: TEST_DIR,
       loader: 'babel'
@@ -30,7 +28,9 @@ module.exports = {
   },
   output: {},
   resolve: {
-    extensions: ['', '.jsx', '.js'],
-    alias: BROWSER_DIR
+    alias: {
+      'app': BROWSER_DIR
+    },
+    extensions: ['', '.js', '.jsx']
   }
 };

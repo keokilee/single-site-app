@@ -9,7 +9,7 @@
     "start": "electron .",
     "build:osx": "electron-packager . SingleSiteApp --platform=darwin --arch=x64 --version=0.34.1 --out=build",
     "test": "npm run lint && npm run test:browser",
-    "test:browser": "karma start"
+    "test:browser": "BABEL_ENV=test karma start"
   },
   "repository": {
     "type": "git",
@@ -53,6 +53,7 @@
     "karma-spec-reporter": "0.0.22",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.3.3",
+    "react-addons-test-utils": "^0.14.2",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",
     "redbox-react": "^1.1.1",
