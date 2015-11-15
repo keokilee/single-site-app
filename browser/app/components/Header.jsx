@@ -8,7 +8,6 @@ export default class Header extends Component {
   render() {
     const {
       enableBack,
-      favicon,
       onBack,
       onRefresh,
       onStop,
@@ -35,7 +34,6 @@ export default class Header extends Component {
           </button>
         </div>
         <div styleName='title-cell'>
-          <img src={favicon} />
           {url}
         </div>
       </div>
@@ -44,11 +42,11 @@ export default class Header extends Component {
 }
 
 Header.propTypes = {
-  enableBack: PropTypes.func,
-  enableForward: PropTypes.func,
+  enableBack: PropTypes.func.isRequired,
+  enableForward: PropTypes.func.isRequired,
   favicon: PropTypes.string,
-  loading: PropTypes.bool.isRequired,
-  onBack: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
+  onBack: PropTypes.func,
   onForward: PropTypes.func,
   onRefresh: PropTypes.func,
   onStop: PropTypes.func,
