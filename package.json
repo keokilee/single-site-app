@@ -28,11 +28,12 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
+    "babel-core": "^5.8.3",
     "babel-eslint": "^4.1.5",
     "babel-loader": "^5.3.3",
     "babel-plugin-react-transform": "^1.1.1",
     "css-loader": "^0.23.0",
-    "electron-debug": "^0.4.0",
+    "electron-debug": "^0.4.1",
     "electron-mocha": "^0.6.1",
     "electron-packager": "^5.1.1",
     "eslint": "^1.9.0",
