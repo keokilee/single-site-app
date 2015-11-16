@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import Header from '../components/Header';
+import Navigation from './Navigation';
 import WebView from '../components/WebView';
 
 import { setUrl, setLoading, setFavicon } from '../actions';
@@ -11,24 +11,12 @@ import whitelist from '../whitelist';
 
 export default class App extends Component {
   render() {
-    const { dispatch, loading, favicon, navigation } = this.props;
+    const { dispatch } = this.props;
     const canNavigate = whitelist(config.whitelist);
-    const { history, currentIndex } = navigation;
-    const url = history[currentIndex] ? history[currentIndex].url : '';
 
     return (
       <div styleName='app'>
-        <Header
-          enableBack={() => this._webView && this._webView.canGoBack()}
-          enableForward={() => this._webView && this._webView.canGoForward()}
-          favicon={favicon}
-          loading={loading}
-          onBack={e => this._webView.handleBack(e)}
-          onForward={e => this._webView.handleForward(e)}
-          onRefresh={e => this._webView.handleRefresh(e)}
-          onStop={e => this._webView.handleStop(e)}
-          url={url}
-        />
+        <Navigation webview={this._webView} />
         <WebView
           canNavigate={url => canNavigate(url)}
           onChangeUrl={url => dispatch(setUrl(url))}
@@ -44,18 +32,11 @@ export default class App extends Component {
 }
 
 App.propTypes = {
-  dispatch: PropTypes.func,
-  favicon: PropTypes.string,
-  loading: PropTypes.bool.isRequired,
-  navigation: PropTypes.any
+  dispatch: PropTypes.func
 };
 
 function select(state) {
-  return {
-    loading: state.loading,
-    navigation: state.navigation,
-    favicon: state.favicon
-  };
+  return {};
 }
 
 export default connect(select)(App);
