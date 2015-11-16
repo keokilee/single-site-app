@@ -15,8 +15,6 @@ export default class App extends Component {
     const canNavigate = whitelist(config.whitelist);
     const { history, currentIndex } = navigation;
     const url = history[currentIndex] ? history[currentIndex].url : '';
-    console.log('current index: ', currentIndex);
-    console.log(history);
 
     return (
       <div styleName='app'>
