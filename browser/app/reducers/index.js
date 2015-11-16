@@ -1,39 +1,25 @@
 /*
 State tree:
 {
-  initialUrl
   loading
-  history
+  navigation
   whitelist
   sessionNamespace
   favicon
 }
 */
 import { combineReducers } from 'redux';
+import { navigation } from './navigation';
 
 import {
-  SET_URL,
   SET_LOADING,
   SET_FAVICON
 } from '../actions';
-
-function initialUrl(state = '') {
-  return state;
-}
 
 function loading(state = false, { type, loading }) {
   switch (type) {
     case SET_LOADING:
       return loading;
-    default:
-      return state;
-  }
-}
-
-function history(state = [], { type, url }) {
-  switch (type) {
-    case SET_URL:
-      return [...state, url];
     default:
       return state;
   }
@@ -49,9 +35,8 @@ function favicon(state = '', { type, favicon }) {
 }
 
 const webviewApp = combineReducers({
-  initialUrl,
   favicon,
-  history,
+  navigation,
   loading
 });
 

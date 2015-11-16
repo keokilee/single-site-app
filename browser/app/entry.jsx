@@ -11,18 +11,13 @@ import webviewApp from './reducers';
 import App from './containers/App';
 import DevTools from './containers/DevTools';
 
-import config from './config.js';
-
 const createDebugStore = compose(
   DevTools.instrument(),
   persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
 )(createStore);
 
 function configureStore() {
-  const { url } = config;
-  const store = createDebugStore(webviewApp, {
-    initialUrl: url
-  });
+  const store = createDebugStore(webviewApp);
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {

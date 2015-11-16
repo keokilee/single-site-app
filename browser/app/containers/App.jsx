@@ -11,9 +11,12 @@ import whitelist from '../whitelist';
 
 export default class App extends Component {
   render() {
-    const { dispatch, initialUrl, history, loading, favicon } = this.props;
-    const currentUrl = history[history.length - 1];
+    const { dispatch, loading, favicon, navigation } = this.props;
     const canNavigate = whitelist(config.whitelist);
+    const { history, currentIndex } = navigation;
+    const url = history[currentIndex] ? history[currentIndex].url : '';
+    console.log('current index: ', currentIndex);
+    console.log(history);
 
     return (
       <div styleName='app'>
@@ -26,7 +29,7 @@ export default class App extends Component {
           onForward={e => this._webView.handleForward(e)}
           onRefresh={e => this._webView.handleRefresh(e)}
           onStop={e => this._webView.handleStop(e)}
-          url={currentUrl}
+          url={url}
         />
         <WebView
           canNavigate={url => canNavigate(url)}
@@ -35,7 +38,7 @@ export default class App extends Component {
           sessionNamespace={config.sessionNamespace}
           setFavicon={i => dispatch(setFavicon(i))}
           setLoading={l => dispatch(setLoading(l))}
-          url={initialUrl}
+          url={config.url}
         />
       </div>
     );
@@ -45,16 +48,14 @@ export default class App extends Component {
 App.propTypes = {
   dispatch: PropTypes.func,
   favicon: PropTypes.string,
-  history: PropTypes.array.isRequired,
-  initialUrl: PropTypes.string.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  navigation: PropTypes.any
 };
 
 function select(state) {
   return {
-    initialUrl: state.initialUrl,
-    history: state.history,
     loading: state.loading,
+    navigation: state.navigation,
     favicon: state.favicon
   };
 }
