@@ -6,6 +6,7 @@ State tree:
   whitelist
   sessionNamespace
   favicon
+  tabs
 }
 */
 import { combineReducers } from 'redux';

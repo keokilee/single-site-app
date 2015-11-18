@@ -21,14 +21,16 @@ const URL_OBJECT = {
 export function navigation(state = INITIAL_STATE, { type, url }) {
   switch (type) {
     case SET_URL:
-      const urlObj = Object.assign({}, URL_OBJECT, {
+      const urlObj = {
+        ...URL_OBJECT,
         url: url
-      });
+      };
 
-      return Object.assign({}, state, {
+      return {
+        ...state,
         currentIndex: state.currentIndex + 1,
         history: [...state.history, urlObj]
-      });
+      };
 
     default:
       return state;
