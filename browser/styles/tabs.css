@@ -12,4 +12,9 @@
   border-bottom: none;
   height: 100%;
   text-align: center;
+  color: white;
+}
+
+.active {
+  background-color: #AB47BC;
 }

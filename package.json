@@ -21,6 +21,7 @@
   "author": "George Lee",
   "license": "ISC",
   "dependencies": {
+    "classnames": "^2.2.0",
     "electron-prebuilt": "^0.35.0",
     "react": "^0.14.2",
     "react-css-modules": "^3.6.0",
