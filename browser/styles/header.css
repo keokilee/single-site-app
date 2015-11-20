@@ -1,8 +1,5 @@
 .header {
   box-sizing: border-box;
-  position: absolute;
-  top: 0;
-  left: 0;
   background-color: #1A237E;
   color: #EFEFEF;
   padding: 5px 15px;

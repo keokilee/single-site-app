@@ -1,6 +1,7 @@
 const path = require('path');
 
 const BROWSER_DIR = path.join(__dirname, '..', 'browser', 'app');
+const STYLES_DIR = path.join(__dirname, '..', 'browser', 'styles');
 const TEST_DIR = path.join(__dirname, '..', 'spec', 'browser');
 
 module.exports = {
@@ -29,6 +30,7 @@ module.exports = {
   output: {},
   resolve: {
     alias: {
+      'styles': STYLES_DIR,
       'app': BROWSER_DIR
     },
     extensions: ['', '.js', '.jsx']

@@ -1,4 +1,4 @@
-import { ADD_TAB, CHANGE_TAB } from '../actions';
+import { ADD_TAB, CHANGE_TAB } from 'app/actions';
 
 const TAB_STATE = {
   currentIndex: -1,

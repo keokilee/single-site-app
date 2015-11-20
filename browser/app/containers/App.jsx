@@ -2,12 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import Navigation from './Navigation';
-import WebView from '../components/WebView';
+import Tabs from 'app/containers/Tabs';
+import WebView from 'app/components/WebView';
 
-import { setUrl, setLoading, setFavicon } from '../actions';
+import { setUrl, setLoading, setFavicon } from 'app/actions';
 
-import config from '../config';
-import whitelist from '../whitelist';
+import config from 'app/config';
+import whitelist from 'app/whitelist';
 
 export default class App extends Component {
   render() {
@@ -17,6 +18,7 @@ export default class App extends Component {
     return (
       <div styleName='app'>
         <Navigation webview={this._webView} />
+        <Tabs />
         <WebView
           canNavigate={url => canNavigate(url)}
           onChangeUrl={url => dispatch(setUrl(url))}

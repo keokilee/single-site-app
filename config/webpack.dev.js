@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 const BROWSER_DIR = path.join(__dirname, '..', 'browser', 'app');
+const STYLES_DIR = path.join(__dirname, '..', 'browser', 'styles');
 
 module.exports = {
   debug: true,
@@ -55,6 +56,10 @@ module.exports = {
     ])
   ],
   resolve: {
-    extensions: ['', '.jsx', '.js']
+    extensions: ['', '.jsx', '.js'],
+    alias: {
+      'styles': STYLES_DIR,
+      'app': BROWSER_DIR
+    }
   }
 };

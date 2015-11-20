@@ -11,6 +11,7 @@ State tree:
 */
 import { combineReducers } from 'redux';
 import { navigation } from './navigation';
+import { tabs } from './tabs';
 
 import {
   SET_LOADING,
@@ -38,7 +39,8 @@ function favicon(state = '', { type, favicon }) {
 const webviewApp = combineReducers({
   favicon,
   navigation,
-  loading
+  loading,
+  tabs
 });
 
 export default webviewApp;

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
 
-import styles from '../styles/webview.css';
+import styles from 'styles/webview.css';
 import shell from 'shell';
 
 @CSSModules(styles)
