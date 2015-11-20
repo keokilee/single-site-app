@@ -11,6 +11,7 @@
     "test": "npm run lint && npm run test:app && npm run test:browser",
     "test:app": "BABEL_ENV=test mocha spec/app",
     "test:browser": "BABEL_ENV=test karma start",
+    "test:watch": "npm run test:watch:browser",
     "test:watch:browser": "BABEL_ENV=test karma start --auto-watch --no-single-run"
   },
   "repository": {

@@ -7,7 +7,7 @@ const TAB_STATE = {
 
 const INITIAL_STATE = {
   tabIndex: 0,
-  history: [ TAB_STATE ]
+  tabs: [ TAB_STATE ]
 };
 
 export function tabs(state = INITIAL_STATE, { type, tabIndex }) {
@@ -15,9 +15,13 @@ export function tabs(state = INITIAL_STATE, { type, tabIndex }) {
     case ADD_TAB:
       return {
         ...state,
-        history: [ ...state.history, TAB_STATE ]
+        tabs: [ ...state.tabs, TAB_STATE ]
       };
     case CHANGE_TAB:
+      if (tabIndex < 0 || tabIndex >= state.tabs.length) {
+        return state;
+      }
+
       return {
         ...state,
         tabIndex
