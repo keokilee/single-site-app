@@ -23,9 +23,9 @@
   "dependencies": {
     "classnames": "^2.2.0",
     "electron-prebuilt": "^0.35.0",
-    "react": "^0.14.2",
+    "react": "^0.14.3",
     "react-css-modules": "^3.6.0",
-    "react-dom": "^0.14.2",
+    "react-dom": "^0.14.3",
     "react-redux": "^4.0.0",
     "redux": "^3.0.4"
   },
@@ -45,7 +45,6 @@
     "eslint-plugin-react": "^3.9.0",
     "eslint-plugin-standard": "^1.2.0",
     "expect": "^1.13.0",
-    "expect.js": "^0.3.1",
     "express": "^4.13.3",
     "extract-text-webpack-plugin": "^0.9.1",
     "isparta-instrumenter-loader": "0.2.1",
