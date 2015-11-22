@@ -4,9 +4,6 @@
   "env": {
     "mocha": true
   },
-  "globals": {
-    "sinon": true
-  },
   "rules": {
     "no-var": 2,
     "prefer-const": 2,

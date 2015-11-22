@@ -3,21 +3,26 @@
 import 'babel-core/polyfill';
 import React from 'react';
 import { render } from 'react-dom';
-import { compose, createStore } from 'redux';
+import { compose, createStore, applyMiddleware } from 'redux';
 import { persistState } from 'redux-devtools';
+import createLogger from 'redux-logger';
 import { Provider } from 'react-redux';
 
 import webviewApp from './reducers';
 import App from './containers/App';
 import DevTools from './containers/DevTools';
 
-const createDebugStore = compose(
-  DevTools.instrument(),
-  persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
-)(createStore);
+function buildStore() {
+  const logger = createLogger();
+  const createWithMiddleware = applyMiddleware(logger)(createStore);
+  return compose(
+    DevTools.instrument(),
+    persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
+  )(createWithMiddleware);
+}
 
 function configureStore() {
-  const store = createDebugStore(webviewApp);
+  const store = buildStore()(webviewApp);
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {
