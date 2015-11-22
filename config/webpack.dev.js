@@ -33,27 +33,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new webpack.ExternalsPlugin('commonjs', [
-      'app',
-      'auto-updater',
-      'browser-window',
-      'content-tracing',
-      'dialog',
-      'global-shortcut',
-      'ipc',
-      'menu',
-      'menu-item',
-      'power-monitor',
-      'protocol',
-      'tray',
-      'remote',
-      'web-frame',
-      'clipboard',
-      'crash-reporter',
-      'screen',
-      'shell'
-    ])
+    new webpack.NoErrorsPlugin()
   ],
   resolve: {
     extensions: ['', '.jsx', '.js'],
@@ -61,5 +41,6 @@ module.exports = {
       'styles': STYLES_DIR,
       'app': BROWSER_DIR
     }
-  }
+  },
+  target: 'atom'
 };
