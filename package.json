@@ -2,22 +2,23 @@
   "name": "single-site-app",
   "version": "1.0.0",
   "description": "Electron application for creating single site applications.",
-  "main": "build/app/app.bundle.js",
+  "main": "main.js",
   "scripts": {
-    "build:osx": "electron-packager . SingleSiteApp --platform=darwin --arch=x64 --version=0.34.1 --out=dist",
+    "build:osx": "electron-packager . SingleSiteApp --platform=darwin --arch=x64 --version=0.35.0 --out=dist",
+    "build:dev:app": "webpack --config config/development/webpack.app.js",
     "lint": "eslint . --ext .js,.jsx",
 
     "start:dev": "npm run start:dev:app & npm run start:dev:browser",
-    "start:dev:app": "webpack --config config/development/webpack.app.js --watch",
+    "start:dev:app": "npm run build:dev:app -- --watch",
     "start:dev:browser": "node dev_server.js",
-    
+
     "start": "electron .",
 
     "test": "npm run lint && npm run test:app && npm run test:browser",
     "test:app": "BABEL_ENV=test mocha spec/app",
     "test:browser": "BABEL_ENV=test karma start",
     "test:watch": "npm run test:watch:browser",
-    "test:watch:browser": "BABEL_ENV=test karma start --auto-watch --no-single-run"
+    "test:watch:browser": "npm run test:browser -- --auto-watch --no-single-run"
   },
   "repository": {
     "type": "git",
