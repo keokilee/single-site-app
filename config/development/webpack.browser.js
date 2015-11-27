@@ -1,9 +1,10 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const BROWSER_DIR = path.join(__dirname, '..', 'browser', 'app');
+const BROWSER_DIR = path.join(process.cwd(), 'browser', 'app');
 
 module.exports = {
+  context: process.cwd(),
   debug: true,
   devtool: 'eval',
   entry: [
@@ -27,7 +28,7 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
-    path: path.join(__dirname, 'build'),
+    path: path.join(process.cwd(), 'build'),
     publicPath: '/static/'
   },
   plugins: [
