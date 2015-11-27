@@ -6,11 +6,11 @@ const BUILD_DIR = path.join(ROOT_DIR, 'build', 'app');
 const APP_DIR = path.join(ROOT_DIR, 'app');
 
 const nodeModules = fs.readdirSync(path.join(ROOT_DIR, 'node_modules'))
-                  .filter(module => ['.bin'].indexOf(module) === -1)
-                  .reduce((modules, module) => {
-                    modules[module] = `commonjs ${module}`;
-                    return modules;
-                  }, {});
+                      .filter(module => ['.bin'].indexOf(module) === -1)
+                      .reduce((modules, module) => {
+                        modules[module] = `commonjs ${module}`;
+                        return modules;
+                      }, {});
 
 module.exports = {
   context: process.cwd(),
