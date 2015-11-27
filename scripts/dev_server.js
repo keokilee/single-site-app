@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
-const config = require('./config/development/webpack.browser');
+const config = require('../config/development/webpack.browser');
 
 const app = express();
 const compiler = webpack(config);
@@ -15,7 +15,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'browser', 'index.html'));
+  res.sendFile(path.join(process.cwd(), 'browser', 'index.html'));
 });
 
 app.listen(port, 'localhost', err => {
