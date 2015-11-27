@@ -32,10 +32,10 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.ExternalsPlugin('commonjs', ['electron'])
   ],
   resolve: {
     extensions: ['', '.jsx', '.js']
-  },
-  target: 'atom'
+  }
 };
