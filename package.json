@@ -7,13 +7,10 @@
     "build:osx": "electron-packager . SingleSiteApp --platform=darwin --arch=x64 --version=0.35.0 --out=dist",
     "build:dev:app": "webpack --config config/development/webpack.app.js",
     "lint": "eslint . --ext .js,.jsx",
-
     "start:dev": "npm run start:dev:app & npm run start:dev:browser",
     "start:dev:app": "npm run build:dev:app -- --watch",
     "start:dev:browser": "node dev_server.js",
-
     "start": "electron .",
-
     "test": "npm run lint && npm run test:app && npm run test:browser",
     "test:app": "BABEL_ENV=test mocha spec/app",
     "test:browser": "BABEL_ENV=test karma start",
@@ -70,6 +67,7 @@
     "redux-devtools-log-monitor": "^1.0.0-beta-3",
     "redux-logger": "^2.0.4",
     "rimraf": "^2.4.3",
+    "source-map-support": "^0.3.3",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.8",
     "webpack-dev-middleware": "^1.2.0",

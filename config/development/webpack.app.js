@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const webpack = require('webpack');
+
 const ROOT_DIR = process.cwd();
 const BUILD_DIR = path.join(ROOT_DIR, 'build', 'app');
 const APP_DIR = path.join(ROOT_DIR, 'app');
@@ -32,6 +34,10 @@ module.exports = {
     filename: 'app.bundle.js',
     path: BUILD_DIR
   },
+  plugins: [
+    new webpack.BannerPlugin('require("source-map-support").install();',
+                             { raw: true, entryOnly: false })
+  ],
   resolve: {
     extensions: ['', '.js', '.jsx'] // Universal React, maybe?
   },
