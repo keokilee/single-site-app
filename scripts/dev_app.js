@@ -12,7 +12,7 @@ const electronPath = path.join(process.cwd(), 'node_modules', '.bin', 'electron'
 let started = false;
 
 nodemon({
-  execMap: { js: `${electronPath} .` },
+  execMap: { js: `${electronPath}` },
   ignore: ['*'],
   watch: 'noop/',
   ext: 'noop'
