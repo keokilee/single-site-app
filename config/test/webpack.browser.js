@@ -1,9 +1,10 @@
 const path = require('path');
 
-const BROWSER_DIR = path.join(__dirname, '..', 'browser', 'app');
-const TEST_DIR = path.join(__dirname, '..', 'spec', 'browser');
+const BROWSER_DIR = path.join(process.cwd(), 'browser', 'app');
+const TEST_DIR = path.join(process.cwd(), 'spec', 'browser');
 
 module.exports = {
+  context: process.cwd(),
   debug: true,
   devtool: 'inline-source-map',
   entry: {},
