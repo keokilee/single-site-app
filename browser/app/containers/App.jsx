@@ -1,15 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import CSSModules from 'react-css-modules';
 
-import Navigation from './Navigation';
+import Navigation from 'app/containers/Navigation';
 import Tabs from 'app/containers/Tabs';
 import WebView from 'app/components/WebView';
-
 import { setUrl, setLoading, setFavicon } from 'app/actions';
-
 import config from 'app/config';
 import whitelist from 'app/whitelist';
 
+import styles from 'styles/base.css';
+
+@CSSModules(styles)
 export default class App extends Component {
   render() {
     const { dispatch } = this.props;

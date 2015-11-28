@@ -12,8 +12,10 @@ export default class Tab extends Component {
 
     return (
       <div styleName={classes}>
-        {title}
-        <button>x</button>
+        <span>{title}</span>
+        <button>
+          <i className='material-icons'>clear</i>
+        </button>
       </div>
     );
   }

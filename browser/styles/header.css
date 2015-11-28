@@ -14,16 +14,7 @@
 }
 
 .button-cell button {
-  color: white;
-  background-color: transparent;
-  border: none;
   padding: 5px 5px 0;
-  cursor: pointer;
-}
-
-.button-cell button:disabled {
-  cursor: default;
-  color: #AAA;
 }
 
 .title-cell {
