@@ -16,7 +16,7 @@ module.exports = function karmaConfig(config) {
       dir: 'build/coverage/',
       type: 'html'
     },
-    webpack: require('./config/webpack.test'),
+    webpack: require('./config/test/webpack.browser'),
     webpackMiddleware: {
       noInfo: true
     }

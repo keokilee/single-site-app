@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
 
 import styles from 'styles/webview.css';
-import shell from 'shell';
+import { shell } from 'electron';
 
 @CSSModules(styles)
 export default class WebView extends Component {

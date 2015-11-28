@@ -1,10 +1,11 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const BROWSER_DIR = path.join(__dirname, '..', 'browser', 'app');
-const STYLES_DIR = path.join(__dirname, '..', 'browser', 'styles');
+const BROWSER_DIR = path.join(process.cwd(), 'browser', 'app');
+const STYLES_DIR = path.join(process.cwd(), 'browser', 'styles');
 
 module.exports = {
+  context: process.cwd(),
   debug: true,
   devtool: 'eval',
   entry: [
@@ -28,12 +29,13 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
-    path: path.join(__dirname, 'build'),
+    path: path.join(process.cwd(), 'build'),
     publicPath: '/static/'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.ExternalsPlugin('commonjs', ['electron'])
   ],
   resolve: {
     extensions: ['', '.jsx', '.js'],
@@ -41,6 +43,5 @@ module.exports = {
       'styles': STYLES_DIR,
       'app': BROWSER_DIR
     }
-  },
-  target: 'atom'
+  }
 };
