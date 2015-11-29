@@ -18,6 +18,6 @@ app.on('ready', () => {
     height: 800
   });
 
-  mainWindow.loadUrl('http://localhost:4000/');
+  mainWindow.loadURL('http://localhost:4000/');
   mainWindow.on('closed', () => mainWindow = null);
 });
