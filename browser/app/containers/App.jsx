@@ -8,18 +8,19 @@ import WebView from 'app/components/WebView';
 import { setUrl, setLoading, setFavicon } from 'app/actions';
 import config from 'app/config';
 import whitelist from 'app/whitelist';
-import createMenu from 'app/containers/Menu';
+import Menu from 'app/containers/Menu';
 
 import styles from 'styles/base.css';
 
 @CSSModules(styles)
-export default class App extends Component {
+export class App extends Component {
   render() {
     const { dispatch } = this.props;
     const canNavigate = whitelist(config.whitelist);
 
     return (
       <div styleName='app'>
+        <Menu />
         <Navigation webview={this._webView} />
         <Tabs />
         <WebView
@@ -43,7 +44,5 @@ App.propTypes = {
 function select(state) {
   return {};
 }
-
-createMenu();
 
 export default connect(select)(App);
