@@ -1,0 +1,18 @@
+.tab {
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  padding: 5px 5px 5px 10px;
+}
+
+.tab button {
+  margin-left: 10px;
+}
+
+.tab button i {
+  font-size: 14px;
+}
+
+.active {
+  background-color: #3D5AFE;
+}

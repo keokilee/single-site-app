@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
 
 import Tab from 'app/components/tabs/Tab';
-import styles from 'styles/tabs.css';
+import styles from 'styles/tabs/tabs.css';
 
 @CSSModules(styles)
 export default class TabList extends Component {
@@ -19,7 +19,9 @@ export default class TabList extends Component {
           />
         )}
 
-        <button>+</button>
+        <button styleName='add-button'>
+          <i className='material-icons'>add</i>
+        </button>
       </div>
     );
   }

@@ -1,0 +1,11 @@
+.tabs {
+  background-color: #303F9F;
+  height: 30px;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.add-button {
+  padding: 0 5px;
+  color: #EFEFEF;
+}

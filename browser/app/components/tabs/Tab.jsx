@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
 import classnames from 'classnames';
 
-import styles from 'styles/tabs.css';
+import styles from 'styles/tabs/tab.css';
 
 @CSSModules(styles, { allowMultiple: true })
 export default class Tab extends Component {
