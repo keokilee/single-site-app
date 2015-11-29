@@ -6,6 +6,7 @@
   },
   "rules": {
     "no-var": 2,
+    "no-debugger": 0,
     "prefer-const": 2,
     "curly": [2, "all"],
     "semi": [2, "always"],

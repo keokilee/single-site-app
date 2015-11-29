@@ -38,7 +38,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new webpack.ExternalsPlugin('commonjs', ['electron'])
+    new webpack.ExternalsPlugin('commonjs', ['electron', ...Object.keys(process.binding('natives'))])
   ],
   resolve: {
     extensions: ['', '.jsx', '.js'],

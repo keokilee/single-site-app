@@ -8,7 +8,7 @@ import WebView from 'app/components/WebView';
 import { setUrl, setLoading, setFavicon } from 'app/actions';
 import config from 'app/config';
 import whitelist from 'app/whitelist';
-import createMenu from 'app/menu';
+import createMenu from 'app/containers/Menu';
 
 import styles from 'styles/base.css';
 
