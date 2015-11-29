@@ -7,13 +7,13 @@ import styles from 'styles/tabs/tab.css';
 @CSSModules(styles, { allowMultiple: true })
 export default class Tab extends Component {
   render() {
-    const { title, active } = this.props;
+    const { active, onChangeTab, onCloseTab, title } = this.props;
     const classes = classnames('tab', {'active': active});
 
     return (
-      <div styleName={classes}>
+      <div onClick={onChangeTab} styleName={classes}>
         <span>{title}</span>
-        <button>
+        <button onClick={onCloseTab}>
           <i className='material-icons'>clear</i>
         </button>
       </div>
@@ -23,5 +23,7 @@ export default class Tab extends Component {
 
 Tab.propTypes = {
   active: PropTypes.bool,
+  onChangeTab: PropTypes.func.isRequired,
+  onCloseTab: PropTypes.func.isRequired,
   title: PropTypes.string
 };

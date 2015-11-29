@@ -2,13 +2,19 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import TabList from 'app/components/tabs/TabList';
+import { addTab, removeTab, changeTab } from 'app/actions';
 
 export class Tabs extends Component {
   render() {
-    const { tabIndex, tabs } = this.props;
+    const { dispatch, tabIndex, tabs } = this.props;
 
     return (
-      <TabList tabIndex={tabIndex} tabs={tabs} />
+      <TabList
+        onAddTab={() => dispatch(addTab())}
+        onChangeTab={(index) => dispatch(changeTab(index))}
+        onRemoveTab={(index) => dispatch(removeTab(index))}
+        tabIndex={tabIndex}
+        tabs={tabs} />
     );
   }
 };

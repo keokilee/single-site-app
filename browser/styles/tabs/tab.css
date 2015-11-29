@@ -3,6 +3,8 @@
   color: white;
   font-size: 14px;
   padding: 5px 5px 5px 10px;
+  border-right: 1px groove white;
+  cursor: pointer;
 }
 
 .tab button {

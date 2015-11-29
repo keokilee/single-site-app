@@ -7,7 +7,13 @@ import styles from 'styles/tabs/tabs.css';
 @CSSModules(styles)
 export default class TabList extends Component {
   render() {
-    const { tabIndex, tabs } = this.props;
+    const {
+      onAddTab,
+      onChangeTab,
+      onRemoveTab,
+      tabIndex,
+      tabs
+    } = this.props;
 
     return (
       <div styleName='tabs'>
@@ -15,11 +21,13 @@ export default class TabList extends Component {
           <Tab
             active={tabIndex === index}
             key={index}
+            onChangeTab={() => onChangeTab(index)}
+            onCloseTab={() => onRemoveTab(index)}
             title={`Tab ${index + 1}`}
           />
         )}
 
-        <button styleName='add-button'>
+        <button onClick={onAddTab} styleName='add-button'>
           <i className='material-icons'>add</i>
         </button>
       </div>
@@ -28,6 +36,9 @@ export default class TabList extends Component {
 }
 
 TabList.propTypes = {
+  onAddTab: PropTypes.func.isRequired,
+  onChangeTab: PropTypes.func.isRequired,
+  onRemoveTab: PropTypes.func.isRequired,
   tabIndex: PropTypes.number.isRequired,
   tabs: PropTypes.array.isRequired
 };

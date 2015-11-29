@@ -39,7 +39,9 @@ describe('reducers/tabs', () => {
   });
 
   describe('removeTab', () => {
-    const state = tabs(initialState, addTab());
+    let state;
+
+    beforeEach(() => state = tabs(initialState, addTab()));
 
     it('removes a tab', () => {
       const nextState = tabs(state, removeTab(1));
@@ -56,6 +58,12 @@ describe('reducers/tabs', () => {
     it('does not remove a tab if the index does not exist', () => {
       const nextState = tabs(state, removeTab(100));
       expect(nextState.tabs.length).toEqual(state.tabs.length);
+    });
+
+    it('does not remove the last tab', () => {
+      let nextState = tabs(state, removeTab(0));
+      nextState = tabs(nextState, removeTab(0));
+      expect(nextState.tabs.length).toEqual(initialState.tabs.length);
     });
   });
 });

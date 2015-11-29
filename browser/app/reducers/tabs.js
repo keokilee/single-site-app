@@ -29,7 +29,10 @@ export function tabs(state = INITIAL_STATE, { type, tabIndex }) {
       };
 
     case REMOVE_TAB:
-      if (tabIndex < 0 || tabIndex >= state.tabs.length) {
+      const invalidIndex = tabIndex < 0 || tabIndex >= state.tabs.length;
+      const lastTab = state.tabs.length === 1;
+
+      if (lastTab || invalidIndex) {
         return state;
       }
 
