@@ -12,7 +12,7 @@ module.exports = {
   module: {
     preLoaders: [{
       test: /\.jsx?$/,
-      loaders: ['isparta-instrumenter'],
+      loader: 'isparta-instrumenter',
       include: BROWSER_DIR
     }],
     loaders: [{
@@ -21,7 +21,10 @@ module.exports = {
       loader: 'babel'
     }, {
       test: /\.css$/,
-      loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+      loaders: [
+        'style',
+        'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+      ]
     }, {
       test: /\.jsx?$/,
       include: TEST_DIR,
