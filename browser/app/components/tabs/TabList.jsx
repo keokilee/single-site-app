@@ -1,10 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
+import classnames from 'classnames';
 
 import Tab from 'app/components/tabs/Tab';
 import styles from 'styles/tabs/tabs.css';
 
-@CSSModules(styles)
+@CSSModules(styles, { allowMultiple: true })
 export default class TabList extends Component {
   render() {
     const {
@@ -15,8 +16,10 @@ export default class TabList extends Component {
       tabs
     } = this.props;
 
+    const classes = classnames('tabs', {'hidden': tabs.length <= 1});
+
     return (
-      <div styleName='tabs'>
+      <div styleName={classes}>
         {tabs.map((tab, index) =>
           <Tab
             active={tabIndex === index}

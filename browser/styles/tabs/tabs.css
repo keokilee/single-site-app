@@ -5,6 +5,10 @@
   display: flex;
 }
 
+.tabs.hidden {
+  display: none;
+}
+
 .add-button {
   padding: 0 5px;
   color: #EFEFEF;
