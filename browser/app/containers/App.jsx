@@ -8,6 +8,7 @@ import WebView from 'app/components/WebView';
 import { setUrl, setLoading, setFavicon } from 'app/actions';
 import config from 'app/config';
 import whitelist from 'app/whitelist';
+import createMenu from 'app/menu';
 
 import styles from 'styles/base.css';
 
@@ -42,5 +43,7 @@ App.propTypes = {
 function select(state) {
   return {};
 }
+
+createMenu();
 
 export default connect(select)(App);
