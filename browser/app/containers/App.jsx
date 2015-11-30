@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import CSSModules from 'react-css-modules';
 
 import Navigation from 'app/containers/Navigation';
-import Tabs from 'app/containers/Tabs';
 import WebView from 'app/components/WebView';
-import { setUrl, setLoading, setFavicon } from 'app/actions';
+import TabList from 'app/components/tabs/TabList';
+import { setUrl, setLoading, setFavicon, addTab, removeTab, changeTab } from 'app/actions';
 import config from 'app/config';
 import whitelist from 'app/whitelist';
 import Menu from 'app/containers/Menu';
@@ -15,14 +15,19 @@ import styles from 'styles/base.css';
 @CSSModules(styles)
 export class App extends Component {
   render() {
-    const { dispatch } = this.props;
+    const { dispatch, tabIndex, tabs } = this.props;
     const canNavigate = whitelist(config.whitelist);
 
     return (
       <div styleName='app'>
         <Menu />
         <Navigation webview={this._webView} />
-        <Tabs />
+        <TabList
+          onAddTab={() => dispatch(addTab())}
+          onChangeTab={(index) => dispatch(changeTab(index))}
+          onRemoveTab={(index) => dispatch(removeTab(index))}
+          tabIndex={tabIndex}
+          tabs={tabs} />
         <WebView
           canNavigate={url => canNavigate(url)}
           onChangeUrl={url => dispatch(setUrl(url))}
@@ -38,11 +43,16 @@ export class App extends Component {
 }
 
 App.propTypes = {
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
+  tabIndex: PropTypes.number,
+  tabs: PropTypes.array
 };
 
-function select(state) {
-  return {};
+function select({ tabs }) {
+  return {
+    tabIindex: tabs.tabIndex,
+    tabs: tabs.tabs
+  };
 }
 
 export default connect(select)(App);
