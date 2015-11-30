@@ -14,9 +14,24 @@ import styles from 'styles/base.css';
 
 @CSSModules(styles)
 export class App extends Component {
+  createWebview() {
+    const { dispatch } = this.props;
+    const canNavigate = whitelist(config.whitelist);
+
+    return (
+      <WebView
+        canNavigate={url => canNavigate(url)}
+        onChangeUrl={url => dispatch(setUrl(url))}
+        ref={c => this._webView = c}
+        sessionNamespace={config.sessionNamespace}
+        setFavicon={i => dispatch(setFavicon(i))}
+        setLoading={l => dispatch(setLoading(l))}
+        url={config.url} />
+    );
+  }
+
   render() {
     const { dispatch, tabIndex, tabs } = this.props;
-    const canNavigate = whitelist(config.whitelist);
 
     return (
       <div styleName='app'>
@@ -28,15 +43,7 @@ export class App extends Component {
           onRemoveTab={(index) => dispatch(removeTab(index))}
           tabIndex={tabIndex}
           tabs={tabs} />
-        <WebView
-          canNavigate={url => canNavigate(url)}
-          onChangeUrl={url => dispatch(setUrl(url))}
-          ref={c => this._webView = c}
-          sessionNamespace={config.sessionNamespace}
-          setFavicon={i => dispatch(setFavicon(i))}
-          setLoading={l => dispatch(setLoading(l))}
-          url={config.url}
-        />
+        {this.createWebview()}
       </div>
     );
   }
