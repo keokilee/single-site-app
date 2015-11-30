@@ -5,15 +5,29 @@ import CSSModules from 'react-css-modules';
 import Navigation from 'app/containers/Navigation';
 import WebView from 'app/components/WebView';
 import TabList from 'app/components/tabs/TabList';
-import { setUrl, setLoading, setFavicon, addTab, removeTab, changeTab } from 'app/actions';
 import config from 'app/config';
 import whitelist from 'app/whitelist';
 import Menu from 'app/containers/Menu';
+
+import {
+  setUrl,
+  setLoading,
+  setFavicon,
+  setWebview,
+  addTab,
+  removeTab,
+  changeTab
+} from 'app/actions';
 
 import styles from 'styles/base.css';
 
 @CSSModules(styles)
 export class App extends Component {
+  componentDidMount() {
+    // Need to do first time init of the webview.
+    this.props.dispatch(setWebview(this.createWebview()));
+  }
+
   createWebview() {
     const { dispatch } = this.props;
     const canNavigate = whitelist(config.whitelist);
@@ -22,7 +36,6 @@ export class App extends Component {
       <WebView
         canNavigate={url => canNavigate(url)}
         onChangeUrl={url => dispatch(setUrl(url))}
-        ref={c => this._webView = c}
         sessionNamespace={config.sessionNamespace}
         setFavicon={i => dispatch(setFavicon(i))}
         setLoading={l => dispatch(setLoading(l))}
@@ -32,18 +45,21 @@ export class App extends Component {
 
   render() {
     const { dispatch, tabIndex, tabs } = this.props;
+    const currentTab = tabs[tabIndex];
+    const currentView = currentTab ? currentTab.webview : null;
 
     return (
       <div styleName='app'>
         <Menu />
-        <Navigation webview={this._webView} />
+        <Navigation />
         <TabList
-          onAddTab={() => dispatch(addTab())}
+          onAddTab={() => dispatch(addTab(this.createWebview()))}
           onChangeTab={(index) => dispatch(changeTab(index))}
           onRemoveTab={(index) => dispatch(removeTab(index))}
           tabIndex={tabIndex}
           tabs={tabs} />
-        {this.createWebview()}
+
+        {currentView}
       </div>
     );
   }
@@ -57,7 +73,7 @@ App.propTypes = {
 
 function select({ tabs }) {
   return {
-    tabIindex: tabs.tabIndex,
+    tabIndex: tabs.tabIndex,
     tabs: tabs.tabs
   };
 }

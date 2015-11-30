@@ -33,11 +33,13 @@ Navigation.propTypes = {
   webview: PropTypes.any
 };
 
-function select({ loading, navigation, favicon }) {
+function select({ tabs }) {
+  const currentTab = tabs.tabs[tabs.tabIndex];
+
   return {
-    favicon,
-    loading,
-    navigation
+    favicon: currentTab.favicon,
+    loading: currentTab.loading || true,
+    webview: currentTab.webview
   };
 }
 
