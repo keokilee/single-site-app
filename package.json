@@ -6,13 +6,10 @@
   "scripts": {
     "build:osx": "electron-packager . Fluidity --platform=darwin --arch=x64 --version=0.35.0 --out=dist",
     "build:dev:app": "webpack --config config/development/webpack.app.js",
-
     "lint": "eslint . --ext .js,.jsx",
-
     "start:dev:app": "node scripts/dev_app.js",
     "start:dev:browser": "node scripts/dev_server.js",
     "start": "node scripts/development.js",
-
     "test": "npm run lint && npm run test:app && npm run test:browser",
     "test:app": "BABEL_ENV=test mocha spec/app",
     "test:browser": "BABEL_ENV=test karma start",
@@ -36,9 +33,9 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.1.0",
-    "babel-core": "^5.8.3",
+    "babel-core": "^6.3.15",
     "babel-eslint": "^4.1.5",
-    "babel-loader": "^5.3.3",
+    "babel-loader": "^6.2.0",
     "babel-plugin-react-transform": "^1.1.1",
     "css-loader": "^0.23.0",
     "electron-debug": "^0.5.0",
@@ -52,7 +49,7 @@
     "expect": "^1.13.0",
     "express": "^4.13.3",
     "extract-text-webpack-plugin": "^0.9.1",
-    "isparta-instrumenter-loader": "0.2.1",
+    "isparta-instrumenter-loader": "1.0.0",
     "karma": "^0.13.15",
     "karma-coverage": "^0.5.3",
     "karma-electron-launcher": "0.0.5",
