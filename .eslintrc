@@ -1,18 +1,31 @@
 {
-  "parser": "babel-eslint",
-  "extends": [ "standard", "standard-react" ],
+  "ecmaFeatures": {
+    "jsx": true,
+    "modules": true
+  },
   "env": {
+    "browser": true,
+    "node": true,
     "mocha": true
   },
+  "parser": "babel-eslint",
+  "extends": [ "standard", "standard-react" ],
   "rules": {
-    "no-var": 2,
-    "no-debugger": 0,
-    "prefer-const": 2,
-    "curly": [2, "all"],
+    "quotes": [2, "single"],
+    "strict": [2, "never"],
     "semi": [2, "always"],
-    "space-before-function-paren": [2, {"anonymous": "always", "named": "never"}],
-    "wrap-iife": [2, "outside"],
-    "react/jsx-sort-props": 2,
-    "react/jsx-sort-prop-types": 2
-  }
+    "space-before-function-paren": [2, "never"],
+    "babel/generator-star-spacing": 1,
+    "babel/new-cap": 1,
+    "babel/object-shorthand": 1,
+    "babel/no-await-in-loop": 1,
+    "react/jsx-uses-react": 2,
+    "react/jsx-uses-vars": 2,
+    "react/react-in-jsx-scope": 2
+  },
+  "plugins": [
+    "babel",
+    "react",
+    "standard"
+  ]
 }

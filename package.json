@@ -34,7 +34,7 @@
   "devDependencies": {
     "autoprefixer": "^6.1.0",
     "babel-core": "^6.3.17",
-    "babel-eslint": "^4.1.5",
+    "babel-eslint": "^5.0.0-beta6",
     "babel-loader": "^6.2.0",
     "babel-plugin-react-transform": "^2.0.0-beta1",
     "babel-plugin-transform-decorators-legacy": "^1.2.0",
@@ -48,6 +48,7 @@
     "eslint-config-standard": "^4.1.0",
     "eslint-config-standard-react": "^1.2.1",
     "eslint-loader": "^1.1.1",
+    "eslint-plugin-babel": "^3.0.0",
     "eslint-plugin-react": "^3.10.0",
     "eslint-plugin-standard": "^1.2.0",
     "expect": "^1.13.1",

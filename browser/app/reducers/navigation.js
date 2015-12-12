@@ -23,7 +23,7 @@ export function navigation(state = INITIAL_STATE, { type, url }) {
     case SET_URL:
       const urlObj = {
         ...URL_OBJECT,
-        url: url
+        url
       };
 
       return {
