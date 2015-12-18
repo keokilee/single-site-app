@@ -8,7 +8,7 @@ import styles from 'styles/tabs/tab.css';
 export default class Tab extends Component {
   render() {
     const { active, onChangeTab, onCloseTab, title } = this.props;
-    const classes = classnames('tab', {'active': active});
+    const classes = classnames('tab', active);
 
     return (
       <div onClick={onChangeTab} styleName={classes}>
