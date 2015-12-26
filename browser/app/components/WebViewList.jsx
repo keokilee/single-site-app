@@ -4,7 +4,15 @@ import WebView from './WebView';
 
 export default class WebViewList extends Component {
   render() {
-    const { tabs, tabIndex } = this.props;
+    const {
+      tabs,
+      tabIndex,
+      setUrl,
+      sessionNamespace,
+      setFavicon,
+      setLoading,
+      url
+    } = this.props;
 
     return (
       <div>
@@ -13,17 +21,27 @@ export default class WebViewList extends Component {
             hidden={index !== tabIndex}
             key={tab.id}
             canNavigate={url => true}
-            onChangeUrl={url => dispatch(setUrl(url, index))}
-            sessionNamespace={config.sessionNamespace}
-            setFavicon={i => dispatch(setFavicon(i, index))}
-            setLoading={l => dispatch(setLoading(l, index))}
-            url={config.url}
-          />
+            onChangeUrl={url => setUrl(url, index)}
+            sessionNamespace={sessionNamespace}
+            setFavicon={i => setFavicon(i, index)}
+            setLoading={l => setLoading(l, index)}
+            url={url}
+          />;
         })}
       </div>
     );
   }
 }
+
+WebViewList.propTypes = {
+  setUrl: PropTypes.func.isRequired,
+  sessionNamespace: PropTypes.string.isRequired,
+  setFavicon: PropTypes.func.isRequired,
+  setLoading: PropTypes.func.isRequired,
+  tabIndex: PropTypes.number.isRequired,
+  tabs: PropTypes.array.isRequired,
+  url: PropTypes.string
+};
 
 // <WebView
 //   canNavigate={url => canNavigate(url)}

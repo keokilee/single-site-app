@@ -1,4 +1,11 @@
-import { ADD_TAB, CHANGE_TAB, REMOVE_TAB } from 'app/actions';
+import {
+  SET_URL,
+  SET_LOADING,
+  SET_FAVICON,
+  ADD_TAB,
+  CHANGE_TAB,
+  REMOVE_TAB
+} from 'app/actions';
 
 let makeTabId = () => Math.floor(Date.now() / 1000);
 
@@ -15,8 +22,54 @@ const INITIAL_STATE = {
   tabs: [ makeNewTab() ]
 };
 
-export function tabs(state = INITIAL_STATE, { type, tabIndex }) {
+export function tabs(state = INITIAL_STATE, action) {
+  const { tabIndex, type } = action;
+  const tab = state.tabs[tabIndex];
+
   switch (type) {
+    // navigation
+    case SET_URL:
+      const url = action.url;
+
+      if (tab.url === url) {
+        return state;
+      }
+
+      return {
+        ...state,
+        tabs: [
+          ...state.tabs.slice(0, tabIndex),
+          { ...tab, url },
+          ...state.tabs.slice(tabIndex + 1)
+        ]
+      };
+
+    case SET_LOADING:
+      return {
+        ...state,
+        tabs: [
+          ...state.tabs.slice(0, tabIndex),
+          { ...tab, loading: action.loading },
+          ...state.tabs.slice(tabIndex + 1)
+        ]
+      };
+
+    case SET_FAVICON:
+      const favicon = action.favicon;
+      if (tab.favicon === favicon) {
+        return state;
+      }
+
+      return {
+        ...state,
+        tabs: [
+          ...state.tabs.slice(0, tabIndex),
+          { ...tab, favicon },
+          ...state.tabs.slice(tabIndex + 1)
+        ]
+      };
+
+    // Add/change/remove
     case ADD_TAB:
       return {
         ...state,

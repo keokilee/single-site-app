@@ -18,8 +18,8 @@ export function setFavicon(favicon, tabIndex) {
   return { type: SET_FAVICON, favicon, tabIndex };
 }
 
-export function addTab(webview) {
-  return { type: ADD_TAB, webview };
+export function addTab() {
+  return { type: ADD_TAB };
 }
 
 export function changeTab(tabIndex) {
