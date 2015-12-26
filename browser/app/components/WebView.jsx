@@ -80,9 +80,14 @@ export default class WebView extends Component {
   }
 
   render() {
-    const { sessionNamespace, url } = this.props;
+    const { hidden, sessionNamespace, url } = this.props;
+    let styles = {};
+    if (hidden) {
+      styles.display = 'none';
+    }
+
     return (
-      <div styleName='webview'>
+      <div styleName='webview' style={styles}>
         <webview
           autosize='on'
           nodeintegration='true'
@@ -96,6 +101,7 @@ export default class WebView extends Component {
 
 WebView.propTypes = {
   canNavigate: PropTypes.func,
+  hidden: PropTypes.bool,
   onChangeUrl: PropTypes.func.isRequired,
   sessionNamespace: PropTypes.string.isRequired,
   setFavicon: PropTypes.func,

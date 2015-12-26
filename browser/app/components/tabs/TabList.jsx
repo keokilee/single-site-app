@@ -26,7 +26,7 @@ export default class TabList extends Component {
             key={index}
             onChangeTab={() => onChangeTab(index)}
             onCloseTab={() => onRemoveTab(index)}
-            title={`Tab ${index + 1}`}
+            title={tab.title || 'Loading'}
           />
         )}
 
