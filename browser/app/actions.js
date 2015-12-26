@@ -1,11 +1,16 @@
 export const SET_URL = 'SET_URL';
 export const SET_LOADING = 'SET_LOADING';
 export const SET_FAVICON = 'SET_FAVICON';
+export const SET_TITLE = 'SET_TITLE';
 export const SET_WEBVIEW = 'SET_WEBVIEW';
 
 export const ADD_TAB = 'ADD_TAB';
 export const CHANGE_TAB = 'CHANGE_TAB';
 export const REMOVE_TAB = 'REMOVE_TAB';
+
+export function setTitle(title, tabIndex) {
+  return { type: SET_TITLE, title, tabIndex };
+}
 
 export function setWebview(webview, tabIndex) {
   return { type: SET_WEBVIEW, webview, tabIndex };

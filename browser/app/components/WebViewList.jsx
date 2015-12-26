@@ -11,6 +11,7 @@ export default class WebViewList extends Component {
       sessionNamespace,
       setFavicon,
       setLoading,
+      setTitle,
       setWebview,
       url
     } = this.props;
@@ -28,6 +29,7 @@ export default class WebViewList extends Component {
             sessionNamespace={sessionNamespace}
             setFavicon={i => setFavicon(i, index)}
             setLoading={l => setLoading(l, index)}
+            setTitle={t => setTitle(t, index)}
             url={url}
           />;
         })}
@@ -41,18 +43,9 @@ WebViewList.propTypes = {
   sessionNamespace: PropTypes.string.isRequired,
   setFavicon: PropTypes.func.isRequired,
   setLoading: PropTypes.func.isRequired,
+  setTitle: PropTypes.func.isRequired,
   setWebview: PropTypes.func.isRequired,
   tabIndex: PropTypes.number.isRequired,
   tabs: PropTypes.array.isRequired,
   url: PropTypes.string
 };
-
-// <WebView
-//   canNavigate={url => canNavigate(url)}
-//   onChangeUrl={url => dispatch(setUrl(url))}
-//   ref={c => this._webView = c}
-//   sessionNamespace={config.sessionNamespace}
-//   setFavicon={i => dispatch(setFavicon(i))}
-//   setLoading={l => dispatch(setLoading(l))}
-//   url={config.url}
-// />

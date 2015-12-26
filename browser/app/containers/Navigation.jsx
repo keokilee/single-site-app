@@ -5,7 +5,7 @@ import Header from 'app/components/Header';
 
 export default class Navigation extends Component {
   render() {
-    const { loading, favicon, webview, url } = this.props;
+    const { loading, favicon, webview, url, title } = this.props;
 
     return (
       <Header
@@ -17,6 +17,7 @@ export default class Navigation extends Component {
         onForward={e => webview.handleForward(e)}
         onRefresh={e => webview.handleRefresh(e)}
         onStop={e => webview.handleStop(e)}
+        title={title}
         url={url}
       />
     );
@@ -30,6 +31,7 @@ Navigation.propTypes = {
   historyIndex: PropTypes.number,
   loading: PropTypes.bool.isRequired,
   navigation: PropTypes.any,
+  title: PropTypes.string,
   url: PropTypes.string,
   webview: PropTypes.any
 };

@@ -11,11 +11,14 @@ export default class Header extends Component {
       onBack,
       onRefresh,
       onStop,
+      title,
       url,
       enableForward,
       loading,
       onForward
     } = this.props;
+
+    document.title = title;
 
     return (
       <div styleName='header'>
@@ -50,5 +53,6 @@ Header.propTypes = {
   onForward: PropTypes.func,
   onRefresh: PropTypes.func,
   onStop: PropTypes.func,
+  title: PropTypes.string,
   url: PropTypes.string
 };

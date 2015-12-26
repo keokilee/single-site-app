@@ -2,6 +2,7 @@ import {
   SET_URL,
   SET_LOADING,
   SET_FAVICON,
+  SET_TITLE,
   SET_WEBVIEW,
   ADD_TAB,
   CHANGE_TAB,
@@ -18,6 +19,7 @@ const makeNewTab = () => {
     favicon: null,
     url: null,
     loading: false,
+    title: null,
     id: makeTabId()
   };
 };
@@ -71,6 +73,16 @@ export function tabs(state = INITIAL_STATE, action) {
         ]
       };
 
+    case SET_TITLE:
+      return {
+        ...state,
+        tabs: [
+          ...state.tabs.slice(0, tabIndex),
+          { ...tab, title: action.title },
+          ...state.tabs.slice(tabIndex + 1)
+        ]
+      };
+
     case SET_FAVICON:
       const favicon = action.favicon;
       if (tab.favicon === favicon) {
@@ -109,13 +121,19 @@ export function tabs(state = INITIAL_STATE, action) {
     case REMOVE_TAB:
       const invalidIndex = tabIndex < 0 || tabIndex >= state.tabs.length;
       const lastTab = state.tabs.length === 1;
+      let currentIndex = state.tabIndex;
 
       if (lastTab || invalidIndex) {
         return state;
       }
 
+      if (tabIndex === currentIndex) {
+        currentIndex -= 1;
+      }
+
       return {
         ...state,
+        tabIndex: currentIndex,
         tabs: [
           ...state.tabs.slice(0, tabIndex),
           ...state.tabs.slice(tabIndex + 1)

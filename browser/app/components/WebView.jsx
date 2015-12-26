@@ -7,11 +7,11 @@ import { shell } from 'electron';
 @CSSModules(styles)
 export default class WebView extends Component {
   setTitle({ title }) {
-    document.title = title;
+    this.props.setTitle(title);
   }
 
   faviconUpdated({ favicons }) {
-    // this.props.setFavicon(favicons[0]);
+    this.props.setFavicon(favicons[0]);
   }
 
   canGoBack() {
@@ -106,6 +106,7 @@ WebView.propTypes = {
   sessionNamespace: PropTypes.string.isRequired,
   setFavicon: PropTypes.func,
   setLoading: PropTypes.func.isRequired,
+  setTitle: PropTypes.func.isRequired,
   setWebview: PropTypes.func.isRequired,
   url: PropTypes.string.isRequired
 };

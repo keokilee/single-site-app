@@ -16,6 +16,7 @@ import {
   setUrl,
   setLoading,
   setFavicon,
+  setTitle,
   setWebview
 } from 'app/actions';
 
@@ -42,6 +43,7 @@ export class App extends Component {
           sessionNamespace={config.sessionNamespace}
           setFavicon={(favicon, index) => dispatch(setFavicon(favicon, index))}
           setLoading={(loading, index) => dispatch(setLoading(loading, index))}
+          setTitle={(title, index) => dispatch(setTitle(title, index))}
           setWebview={(webview, index) => dispatch(setWebview(webview, index))}
           tabIndex={tabIndex}
           tabs={tabs}

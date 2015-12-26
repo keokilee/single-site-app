@@ -5,6 +5,7 @@ import {
   addTab,
   changeTab,
   removeTab,
+  setTitle,
   setUrl,
   setLoading,
   setFavicon
@@ -46,6 +47,15 @@ describe('reducers/tabs', () => {
 
       it('sets the favicon for the specified tab', () => {
         expect(nextState.tabs[0].favicon).toEqual(favicon);
+      });
+    });
+
+    describe('set title', () => {
+      const title = 'foobar';
+      const nextState = tabs(initialState, setTitle(title, 0));
+
+      it('sets the title for the specified tab', () => {
+        expect(nextState.tabs[0].title).toEqual(title);
       });
     });
   });
@@ -102,6 +112,13 @@ describe('reducers/tabs', () => {
         let nextState = tabs(state, removeTab(0));
         nextState = tabs(nextState, removeTab(0));
         expect(nextState.tabs.length).toEqual(initialState.tabs.length);
+      });
+
+      it('updates the tab index if we remove the last one', () => {
+        const changedState = tabs(state, changeTab(1));
+        const nextState = tabs(changedState, removeTab(1));
+
+        expect(nextState.tabIndex).toEqual(changedState.tabIndex - 1);
       });
     });
   });
