@@ -11,6 +11,7 @@ export default class WebViewList extends Component {
       sessionNamespace,
       setFavicon,
       setLoading,
+      setWebview,
       url
     } = this.props;
 
@@ -22,6 +23,7 @@ export default class WebViewList extends Component {
             key={tab.id}
             canNavigate={url => true}
             onChangeUrl={url => setUrl(url, index)}
+            ref={c => setWebview(c, index)}
             sessionNamespace={sessionNamespace}
             setFavicon={i => setFavicon(i, index)}
             setLoading={l => setLoading(l, index)}
@@ -38,6 +40,7 @@ WebViewList.propTypes = {
   sessionNamespace: PropTypes.string.isRequired,
   setFavicon: PropTypes.func.isRequired,
   setLoading: PropTypes.func.isRequired,
+  setWebview: PropTypes.func.isRequired,
   tabIndex: PropTypes.number.isRequired,
   tabs: PropTypes.array.isRequired,
   url: PropTypes.string

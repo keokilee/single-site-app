@@ -2,6 +2,7 @@ import {
   SET_URL,
   SET_LOADING,
   SET_FAVICON,
+  SET_WEBVIEW,
   ADD_TAB,
   CHANGE_TAB,
   REMOVE_TAB
@@ -13,6 +14,10 @@ const makeNewTab = () => {
   return {
     currentIndex: -1,
     history: [],
+    webview: null,
+    favicon: null,
+    url: null,
+    loading: false,
     id: makeTabId()
   };
 };
@@ -27,6 +32,18 @@ export function tabs(state = INITIAL_STATE, action) {
   const tab = state.tabs[tabIndex];
 
   switch (type) {
+    case SET_WEBVIEW:
+      const webview = action.webview;
+
+      return {
+        ...state,
+        tabs: [
+          ...state.tabs.slice(0, tabIndex),
+          { ...tab, webview },
+          ...state.tabs.slice(tabIndex + 1)
+        ]
+      };
+
     // navigation
     case SET_URL:
       const url = action.url;
