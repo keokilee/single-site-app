@@ -4,7 +4,7 @@
   "description": "Browser component of Fluidity.",
   "main": "main.js",
   "scripts": {
-    "build:osx": "electron-packager . Fluidity --platform=darwin --arch=x64 --version=0.35.0 --out=dist",
+    "build:osx": "electron-packager . Fluidity --platform=darwin --arch=x64 --version=0.36.2 --out=dist",
     "build:dev:app": "webpack --config config/development/webpack.app.js",
     "lint": "eslint . --ext .js,.jsx",
     "start:dev:app": "node scripts/dev_app.js",

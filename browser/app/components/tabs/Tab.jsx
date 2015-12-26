@@ -1,17 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
-import classnames from 'classnames';
 
 import styles from 'styles/tabs/tab.css';
 
-@CSSModules(styles, { allowMultiple: true })
+@CSSModules(styles)
 export default class Tab extends Component {
   render() {
     const { active, onChangeTab, onCloseTab, title } = this.props;
-    const classes = classnames('tab', active);
+    const className = active ? 'active-tab' : 'tab';
 
     return (
-      <div onClick={onChangeTab} styleName={classes}>
+      <div onClick={onChangeTab} styleName={className}>
         <span>{title}</span>
         <button onClick={onCloseTab}>
           <i className='material-icons'>clear</i>
