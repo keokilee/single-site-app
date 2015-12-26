@@ -14,16 +14,17 @@ export default class WebViewList extends Component {
       setWebview,
       url
     } = this.props;
+    console.log(tabs);
 
     return (
       <div>
         {tabs.map((tab, index) => {
-          <WebView
+          return <WebView
             hidden={index !== tabIndex}
             key={tab.id}
             canNavigate={url => true}
             onChangeUrl={url => setUrl(url, index)}
-            ref={c => setWebview(c, index)}
+            setWebview={c => setWebview(c, index)}
             sessionNamespace={sessionNamespace}
             setFavicon={i => setFavicon(i, index)}
             setLoading={l => setLoading(l, index)}

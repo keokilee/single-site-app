@@ -5,8 +5,7 @@ import Header from 'app/components/Header';
 
 export default class Navigation extends Component {
   render() {
-    const { loading, favicon, webview, history, historyIndex } = this.props;
-    const url = historyIndex > -1 ? history[historyIndex].url : '';
+    const { loading, favicon, webview, url } = this.props;
 
     return (
       <Header
@@ -31,19 +30,12 @@ Navigation.propTypes = {
   historyIndex: PropTypes.number,
   loading: PropTypes.bool.isRequired,
   navigation: PropTypes.any,
+  url: PropTypes.string,
   webview: PropTypes.any
 };
 
 function select({ tabs }) {
-  const currentTab = tabs.tabs[tabs.tabIndex];
-
-  return {
-    favicon: currentTab.favicon,
-    loading: !!currentTab.loading,
-    webview: currentTab.webview,
-    history: currentTab.history,
-    historyIndex: currentTab.historyIndex
-  };
+  return tabs.tabs[tabs.tabIndex];
 }
 
 export default connect(select)(Navigation);

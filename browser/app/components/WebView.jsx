@@ -59,6 +59,15 @@ export default class WebView extends Component {
     }
   }
 
+  setWebview(webview) {
+    if (this._webView) {
+      return;
+    }
+
+    this._webView = webview;
+    this.props.setWebview(webview);
+  }
+
   componentDidMount() {
     const { setLoading } = this.props;
 
@@ -78,7 +87,7 @@ export default class WebView extends Component {
           autosize='on'
           nodeintegration='true'
           partition={'persist:' + sessionNamespace}
-          ref={c => this._webView = c}
+          ref={c => this.setWebview(c)}
           src={url}></webview>
       </div>
     );
@@ -91,5 +100,6 @@ WebView.propTypes = {
   sessionNamespace: PropTypes.string.isRequired,
   setFavicon: PropTypes.func,
   setLoading: PropTypes.func.isRequired,
+  setWebview: PropTypes.func.isRequired,
   url: PropTypes.string.isRequired
 };
