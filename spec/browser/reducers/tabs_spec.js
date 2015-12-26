@@ -1,7 +1,7 @@
 import expect from 'expect';
 
 import { tabs } from 'app/reducers/tabs';
-import { setWebview, addTab, changeTab, removeTab } from 'app/actions';
+import { addTab, changeTab, removeTab } from 'app/actions';
 
 describe('reducers/tabs', () => {
   const initialState = tabs(undefined, {});
@@ -16,26 +16,16 @@ describe('reducers/tabs', () => {
     });
   });
 
-  describe('set webview', () => {
-    const nextState = tabs(initialState, setWebview({}));
-
-    it('sets the webview for the current tab', () => {
-      const nextTabs = nextState.tabs;
-      const nextIndex = nextState.tabIndex;
-
-      expect(nextTabs[nextIndex].webview).toExist();
-    });
-
-    it('does not change the length of the tab list', () => {
-      expect(nextState.tabs.length).toEqual(initialState.tabs.length);
-    });
-  });
-
   describe('add tab', () => {
     const nextState = tabs(initialState, addTab({}));
 
     it('adds a tab to the list of tabs', () => {
       expect(nextState.tabs.length).toEqual(initialState.tabs.length + 1);
+    });
+
+    it('assigns an id to the tab', () => {
+      const tab = nextState.tabs[1];
+      expect(tab.id).toExist();
     });
   });
 

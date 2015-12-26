@@ -3,16 +3,10 @@ import { connect } from 'react-redux';
 import CSSModules from 'react-css-modules';
 
 import Navigation from 'app/containers/Navigation';
-import WebView from 'app/components/WebView';
 import TabList from 'app/components/tabs/TabList';
-import config from 'app/config';
-import whitelist from 'app/whitelist';
 import Menu from 'app/containers/Menu';
 
 import {
-  setUrl,
-  setLoading,
-  setFavicon,
   setWebview,
   addTab,
   removeTab,
@@ -28,25 +22,8 @@ export class App extends Component {
     this.props.dispatch(setWebview(this.createWebview()));
   }
 
-  createWebview() {
-    const { dispatch } = this.props;
-    const canNavigate = whitelist(config.whitelist);
-
-    return (
-      <WebView
-        canNavigate={url => canNavigate(url)}
-        onChangeUrl={url => dispatch(setUrl(url))}
-        sessionNamespace={config.sessionNamespace}
-        setFavicon={i => dispatch(setFavicon(i))}
-        setLoading={l => dispatch(setLoading(l))}
-        url={config.url} />
-    );
-  }
-
   render() {
     const { dispatch, tabIndex, tabs } = this.props;
-    const currentTab = tabs[tabIndex];
-    const currentView = currentTab ? currentTab.webview : null;
 
     return (
       <div styleName='app'>
@@ -58,8 +35,6 @@ export class App extends Component {
           onRemoveTab={(index) => dispatch(removeTab(index))}
           tabIndex={tabIndex}
           tabs={tabs} />
-
-        {currentView}
       </div>
     );
   }

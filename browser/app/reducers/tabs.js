@@ -1,37 +1,28 @@
-import { SET_WEBVIEW, ADD_TAB, CHANGE_TAB, REMOVE_TAB } from 'app/actions';
+import { ADD_TAB, CHANGE_TAB, REMOVE_TAB } from 'app/actions';
 
-const TAB_STATE = {
-  currentIndex: -1,
-  history: [],
-  webview: null
+let makeTabId = () => Math.floor(Date.now() / 1000);
+
+const makeNewTab = () => {
+  return {
+    currentIndex: -1,
+    history: [],
+    id: makeTabId()
+  };
 };
 
 const INITIAL_STATE = {
   tabIndex: 0,
-  tabs: [ TAB_STATE ]
+  tabs: [ makeNewTab() ]
 };
 
-export function tabs(state = INITIAL_STATE, { type, tabIndex, webview }) {
+export function tabs(state = INITIAL_STATE, { type, tabIndex }) {
   switch (type) {
-    case SET_WEBVIEW:
-      const tab = state.tabs[state.tabIndex];
-      tab.webview = webview;
-
-      return {
-        ...state,
-        tabs: [
-          ...state.tabs.splice(0, state.tabIndex),
-          tab,
-          ...state.tabs.splice(state.tabIndex + 1)
-        ]
-      };
-
     case ADD_TAB:
       return {
         ...state,
         tabs: [
           ...state.tabs,
-          { ...TAB_STATE, webview }
+          makeNewTab()
         ]
       };
 
