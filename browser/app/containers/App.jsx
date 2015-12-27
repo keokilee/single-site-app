@@ -32,7 +32,7 @@ export class App extends Component {
         <Menu />
         <Navigation />
         <TabList
-          onAddTab={() => dispatch(addTab(this.createWebview()))}
+          onAddTab={() => dispatch(addTab())}
           onChangeTab={(index) => dispatch(changeTab(index))}
           onRemoveTab={(index) => dispatch(removeTab(index))}
           tabIndex={tabIndex}

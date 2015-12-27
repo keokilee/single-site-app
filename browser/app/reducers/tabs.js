@@ -102,6 +102,7 @@ export function tabs(state = INITIAL_STATE, action) {
     case ADD_TAB:
       return {
         ...state,
+        tabIndex: state.tabs.length,
         tabs: [
           ...state.tabs,
           makeNewTab()

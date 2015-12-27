@@ -72,6 +72,10 @@ describe('reducers/tabs', () => {
         const tab = nextState.tabs[1];
         expect(tab.id).toExist();
       });
+
+      it('sets the tab index to the new tab', () => {
+        expect(nextState.tabIndex).toEqual(nextState.tabs.length - 1);
+      });
     });
 
     describe('changeTab', () => {
@@ -84,7 +88,7 @@ describe('reducers/tabs', () => {
 
       it('does not change the tab if the index is out of bounds', () => {
         const nextState = tabs(state, changeTab(100));
-        expect(nextState.tabIndex).toEqual(0);
+        expect(nextState.tabIndex).toEqual(state.tabIndex);
       });
     });
 
