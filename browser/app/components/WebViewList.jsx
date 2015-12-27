@@ -1,7 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import CSSModules from 'react-css-modules';
 
 import WebView from './WebView';
+import styles from 'styles/webview.css';
 
+@CSSModules(styles)
 export default class WebViewList extends Component {
   render() {
     const {
@@ -15,10 +18,9 @@ export default class WebViewList extends Component {
       setWebview,
       url
     } = this.props;
-    console.log(tabs);
 
     return (
-      <div>
+      <div styleName={tabs.length > 1 ? 'webviews--tabs' : 'webviews'}>
         {tabs.map((tab, index) => {
           return <WebView
             hidden={index !== tabIndex}
