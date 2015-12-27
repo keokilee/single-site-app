@@ -4,15 +4,16 @@ import React from 'react';
 import { render } from 'react-dom';
 import { compose, createStore, applyMiddleware } from 'redux';
 import { persistState } from 'redux-devtools';
-import createLogger from 'redux-logger';
 import { Provider } from 'react-redux';
 
 import webviewApp from './reducers';
 import App from './containers/App';
 import DevTools from './containers/DevTools';
 
-function buildStore() {
-  const logger = createLogger();
+function buildDevStore() {
+  const logger = require('redux-logger')();
+  const DevTools = require('./containers/DevTools').default;
+
   const createWithMiddleware = applyMiddleware(logger)(createStore);
   return compose(
     DevTools.instrument(),
@@ -21,7 +22,7 @@ function buildStore() {
 }
 
 function configureStore() {
-  const store = buildStore()(webviewApp);
+  const store = buildDevStore()(webviewApp);
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {
@@ -33,14 +34,26 @@ function configureStore() {
   return store;
 };
 
-const store = configureStore();
+if (process.env.NODE_ENV !== 'production') {
+  const store = configureStore();
+  render(
+    <Provider store={store}>
+      <div>
+        <App />
+        <DevTools />
+      </div>
+    </Provider>,
+    document.getElementById('app')
+  );
+} else {
+  const store = createStore(webviewApp);
 
-render(
-  <Provider store={store}>
-    <div>
-      <App />
-      <DevTools />
-    </div>
-  </Provider>,
-  document.getElementById('app')
-);
+  render(
+    <Provider store={store}>
+      <div>
+        <App />
+      </div>
+    </Provider>,
+    document.getElementById('app')
+  );
+}

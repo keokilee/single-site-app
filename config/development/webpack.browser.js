@@ -33,7 +33,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.join(process.cwd(), 'build'),
-    publicPath: '/static/'
+    publicPath: '/public/'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
