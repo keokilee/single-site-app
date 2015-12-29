@@ -4,7 +4,10 @@ import reporter from 'crash-reporter';
 import debug from 'debug';
 
 debug();
-reporter.start();
+reporter.start({
+  companyName: 'No Name Co.',
+  submitURL: 'http://localhost:3001'
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {

@@ -6,6 +6,9 @@ const STYLES_DIR = path.join(process.cwd(), 'browser', 'styles');
 
 module.exports = {
   context: process.cwd(),
+  cssnext: {
+    browsers: 'last 2 versions'
+  },
   debug: true,
   devtool: 'eval',
   entry: [
@@ -26,7 +29,8 @@ module.exports = {
       test: /\.css$/,
       loaders: [
         'style',
-        'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+        'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+        'cssnext'
       ]
     }]
   },
