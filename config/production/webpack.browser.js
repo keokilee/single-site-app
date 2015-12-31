@@ -4,6 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const BROWSER_DIR = path.join(process.cwd(), 'browser', 'app');
 const STYLES_DIR = path.join(process.cwd(), 'browser', 'styles');
+const DIST_DIR = path.join(process.cwd(), 'dist', 'browser', 'assets');
 
 module.exports = {
   context: process.cwd(),
@@ -23,7 +24,7 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
-    path: path.join(process.cwd(), 'build', 'browser')
+    path: DIST_DIR
   },
   plugins: [
     new webpack.optimize.DedupePlugin(),

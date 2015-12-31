@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "build:osx": "electron-packager . Fluidity --platform=darwin --arch=x64 --version=0.36.2 --out=dist",
+    "build:app": "webpack --config config/production/webpack.app.js",
     "build:browser": "webpack --config config/production/webpack.browser.js",
     "lint": "eslint . --ext .js,.jsx",
     "start:dev:app": "node scripts/dev_app.js",
