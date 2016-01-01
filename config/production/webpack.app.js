@@ -45,7 +45,8 @@ module.exports = {
     new webpack.BannerPlugin(
       'require("source-map-support").install();',
       { raw: true, entryOnly: false }
-    )
+    ),
+    new webpack.ExternalsPlugin('commonjs', ['electron', ...Object.keys(process.binding('natives'))])
   ],
   resolve: {
     extensions: ['', '.js', '.jsx'] // Universal React, maybe?
