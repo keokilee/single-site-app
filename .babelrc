@@ -18,6 +18,10 @@
     },
     "test": {
       "plugins": ["transform-decorators-legacy"]
+    },
+
+    "production": {
+      "plugins": ["transform-decorators-legacy"]
     }
   }
 }

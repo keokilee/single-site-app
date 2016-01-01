@@ -24,7 +24,7 @@ app.on('ready', () => {
     height: 800
   });
 
-  if (process.env === 'production') {
+  if (process.env.NODE_ENV === 'production') {
     mainWindow.loadURL(`file://${process.cwd()}/dist/browser/index.html`);
   } else {
     mainWindow.loadURL('http://localhost:4000/');
