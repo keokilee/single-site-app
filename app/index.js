@@ -1,10 +1,13 @@
-import { app, BrowserWindow, crashReporter } from 'electron';
+import app from 'app';
+import BrowserWindow from 'browser-window';
+import reporter from 'crash-reporter';
+import debug from 'debug';
 
 if (process.env.NODE_ENV !== 'production') {
-  require('debug').debug();
+  debug();
 }
 
-crashReporter.start({
+reporter.start({
   companyName: 'No Name Co.',
   submitURL: 'http://localhost:3001'
 });
