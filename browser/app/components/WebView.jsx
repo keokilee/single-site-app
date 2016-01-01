@@ -1,11 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import CSSModules from 'react-css-modules';
+import cssModules from 'react-css-modules';
 
 import styles from 'styles/webview.css';
 import { shell } from 'electron';
 
-@CSSModules(styles)
-export default class WebView extends Component {
+class WebView extends Component {
   setTitle({ title }) {
     this.props.setTitle(title);
   }
@@ -98,6 +97,8 @@ export default class WebView extends Component {
     );
   }
 }
+
+export default cssModules(WebView, styles);
 
 WebView.propTypes = {
   canNavigate: PropTypes.func,

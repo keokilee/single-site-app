@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import CSSModules from 'react-css-modules';
+import cssModules from 'react-css-modules';
 
 import styles from 'styles/header.css';
 
-@CSSModules(styles)
-export default class Header extends Component {
+class Header extends Component {
   render() {
     const {
       enableBack,
@@ -43,6 +42,8 @@ export default class Header extends Component {
     );
   }
 }
+
+export default cssModules(Header, styles);
 
 Header.propTypes = {
   enableBack: PropTypes.func.isRequired,

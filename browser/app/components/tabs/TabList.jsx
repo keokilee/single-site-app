@@ -1,12 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import CSSModules from 'react-css-modules';
+import cssModules from 'react-css-modules';
 import classnames from 'classnames';
 
 import Tab from 'app/components/tabs/Tab';
 import styles from 'styles/tabs/tabs.css';
 
-@CSSModules(styles, { allowMultiple: true })
-export default class TabList extends Component {
+class TabList extends Component {
   render() {
     const {
       onAddTab,
@@ -37,6 +36,8 @@ export default class TabList extends Component {
     );
   }
 }
+
+export default cssModules(TabList, styles, { allowMultiple: true });
 
 TabList.propTypes = {
   onAddTab: PropTypes.func.isRequired,

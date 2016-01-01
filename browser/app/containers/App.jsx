@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import CSSModules from 'react-css-modules';
+import cssModules from 'react-css-modules';
 
 import Navigation from 'app/containers/Navigation';
 import TabList from 'app/components/tabs/TabList';
@@ -22,8 +22,7 @@ import {
 
 import styles from 'styles/base.css';
 
-@CSSModules(styles)
-export class App extends Component {
+class App extends Component {
   render() {
     const { dispatch, tabIndex, tabs } = this.props;
 
@@ -67,4 +66,4 @@ function select({ tabs }) {
   };
 }
 
-export default connect(select)(App);
+export default cssModules(connect(select)(App), styles);

@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import CSSModules from 'react-css-modules';
+import cssModules from 'react-css-modules';
 
 import styles from 'styles/tabs/tab.css';
 
-@CSSModules(styles)
-export default class Tab extends Component {
+class Tab extends Component {
   render() {
     const { active, onChangeTab, onCloseTab, title } = this.props;
     const className = active ? 'active-tab' : 'tab';
@@ -19,6 +18,8 @@ export default class Tab extends Component {
     );
   }
 }
+
+export default cssModules(Tab, styles);
 
 Tab.propTypes = {
   active: PropTypes.bool,
