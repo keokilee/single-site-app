@@ -9,27 +9,30 @@ import config from 'app/config';
 const ElectronMenu = remote.Menu;
 
 // This is a fake React component. Actually renders no DOM, but included in the app.
-export class Menu extends Component {
+class Menu extends Component {
   render() {
-    const { dispatch, tabIndex } = this.props;
-    const template = buildMenu(dispatch, tabIndex);
-    const menu = ElectronMenu.buildFromTemplate(template);
-    ElectronMenu.setApplicationMenu(menu);
+    const { dispatch, tabIndex, config } = this.props;
+
+    if (config) {
+      const template = buildMenu(dispatch, tabIndex);
+      const menu = ElectronMenu.buildFromTemplate(template);
+      ElectronMenu.setApplicationMenu(menu);
+    }
 
     return null;
   }
 }
 
 Menu.propTypes = {
+  config: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
-  tabIndex: PropTypes.number,
-  tabs: PropTypes.array
+  tabIndex: PropTypes.number
 };
 
-function select({ tabs }) {
+function select({ config, tabs }) {
   return {
-    tabIndex: tabs.tabIndex,
-    tabs: tabs.tabs
+    config,
+    tabIndex: tabs.tabIndex
   };
 }
 
