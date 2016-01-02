@@ -24,7 +24,7 @@ class WebViewList extends Component {
           return <WebView
             hidden={index !== tabIndex}
             key={tab.id}
-            canNavigate={url => true}
+            canNavigate={() => true}
             onChangeUrl={url => setUrl(url, index)}
             setWebview={c => setWebview(c, index)}
             sessionNamespace={sessionNamespace}

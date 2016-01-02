@@ -1,24 +1,27 @@
 'use strict';
 
+import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 import { compose, createStore, applyMiddleware } from 'redux';
 import { persistState } from 'redux-devtools';
 import { Provider } from 'react-redux';
+import sagaMiddleware from 'redux-saga';
 
 import webviewApp from './reducers';
 import App from './containers/App';
 import DevTools from './containers/DevTools';
+import sagas from 'app/sagas';
 
 function buildDevStore() {
-  const logger = require('redux-logger')();
   const DevTools = require('./containers/DevTools').default;
+  const logger = require('redux-logger');
 
-  const createWithMiddleware = applyMiddleware(logger)(createStore);
   return compose(
+    applyMiddleware(sagaMiddleware(...sagas), logger()),
     DevTools.instrument(),
     persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
-  )(createWithMiddleware);
+  )(createStore);
 }
 
 function configureStore() {

@@ -10,6 +10,7 @@ import Menu from 'app/containers/Menu';
 import config from 'app/config';
 
 import {
+  getConfig,
   addTab,
   removeTab,
   changeTab,
@@ -23,6 +24,10 @@ import {
 import styles from 'styles/base.css';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.dispatch(getConfig());
+  }
+
   render() {
     const { dispatch, tabIndex, tabs } = this.props;
 

@@ -1,7 +1,10 @@
 import { app, BrowserWindow, crashReporter } from 'electron';
+import { handleMessages } from './messages';
+
+handleMessages();
 
 if (process.env.NODE_ENV !== 'production') {
-  require('debug').debug();
+  require('debug')();
 }
 
 crashReporter.start({
