@@ -4,19 +4,15 @@ module.exports = function karmaConfig(config) {
     reporters: [ 'spec', 'coverage' ],
     files: [
       'karma.shim.js',
-      'node_modules/babel-polyfill/dist/polyfill.js',
-      'spec/browser/**/*_spec.js',
-      'spec/browser/**/*_spec.jsx'
+      'spec/browser/index.js'
     ],
     preprocessors: {
-      'spec/browser/**/*_spec.js': ['webpack', 'sourcemap'],
-      'spec/browser/**/*_spec.jsx': ['webpack', 'sourcemap']
+      'spec/browser/index.js': ['webpack', 'sourcemap']
     },
     browsers: [ 'Electron' ],
     singleRun: true,
     coverageReporter: {
-      dir: 'build/coverage/',
-      type: 'html'
+      type: 'text'
     },
     webpack: require('./config/test/webpack.browser'),
     webpackMiddleware: {

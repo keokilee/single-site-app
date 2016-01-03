@@ -13,7 +13,7 @@ module.exports = {
   module: {
     preLoaders: [{
       test: /\.jsx?$/,
-      loader: 'isparta-instrumenter',
+      loader: 'isparta',
       include: BROWSER_DIR
     }],
     loaders: [{
