@@ -4,7 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const ROOT_DIR = process.cwd();
-const BUILD_DIR = path.join(ROOT_DIR, 'build', 'app');
+const DIST_DIR = path.join(ROOT_DIR, 'dist', 'app');
 const APP_DIR = path.join(ROOT_DIR, 'app');
 
 const nodeModules = fs.readdirSync(path.join(ROOT_DIR, 'node_modules'))
@@ -16,7 +16,7 @@ const nodeModules = fs.readdirSync(path.join(ROOT_DIR, 'node_modules'))
 
 module.exports = {
   context: process.cwd(),
-  devtool: 'eval',
+  devtool: 'source-map',
   entry: './app/index.js',
   externals: nodeModules,
   module: {
@@ -32,9 +32,16 @@ module.exports = {
   },
   output: {
     filename: 'app.bundle.js',
-    path: BUILD_DIR
+    path: DIST_DIR
   },
   plugins: [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
     new webpack.BannerPlugin(
       'require("source-map-support").install();',
       { raw: true, entryOnly: false }

@@ -9,7 +9,7 @@ import expect, { spyOn } from 'expect';
 import Header from 'app/components/Header';
 
 describe('Header', () => {
-  const headerProps = {
+  let headerProps = {
     enableBack: () => true,
     enableForward: () => true
   };

@@ -1,10 +1,16 @@
-import app from 'app';
-import BrowserWindow from 'browser-window';
-import reporter from 'crash-reporter';
-import debug from 'debug';
+import { app, BrowserWindow, crashReporter } from 'electron';
+import { handleMessages } from './messages';
 
-debug();
-reporter.start();
+handleMessages();
+
+if (process.env.NODE_ENV !== 'production') {
+  require('debug')();
+}
+
+crashReporter.start({
+  companyName: 'No Name Co.',
+  submitURL: 'http://localhost:3001'
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -18,6 +24,11 @@ app.on('ready', () => {
     height: 800
   });
 
-  mainWindow.loadURL('http://localhost:4000/');
+  if (process.env.NODE_ENV === 'production') {
+    mainWindow.loadURL(`file://${process.cwd()}/dist/browser/index.html`);
+  } else {
+    mainWindow.loadURL('http://localhost:4000/');
+  }
+
   mainWindow.on('closed', () => mainWindow = null);
 });

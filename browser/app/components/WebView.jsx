@@ -1,17 +1,15 @@
 import React, { Component, PropTypes } from 'react';
-import CSSModules from 'react-css-modules';
+import cssModules from 'react-css-modules';
 
 import styles from 'styles/webview.css';
-import { shell } from 'electron';
 
-@CSSModules(styles)
-export default class WebView extends Component {
+class WebView extends Component {
   setTitle({ title }) {
-    document.title = title;
+    this.props.setTitle(title);
   }
 
   faviconUpdated({ favicons }) {
-    // this.props.setFavicon(favicons[0]);
+    this.props.setFavicon(favicons[0]);
   }
 
   canGoBack() {
@@ -40,26 +38,24 @@ export default class WebView extends Component {
 
   handleNavigation({ url, isMainFrame }) {
     if (isMainFrame) {
-      const { canNavigate } = this.props;
-      console.log('navigating from ', this._webView.src, ' to ', url);
-      if (this._webView.src !== url && !canNavigate(url)) {
-        this._webView.stop();
-        shell.openExternal(url);
-
-        // SUCH A HACK!!!
-        // Currently, there is no event to handle possibility of navigation.
-        const original = this._webView.src;
-        setTimeout(() => {
-          this._webView.src = original;
-        }, 1);
-
-        return false;
-      }
       this.props.onChangeUrl(url);
     }
   }
 
-  componentDidMount() {
+  setWebview(newWebview) {
+    if (this._webView || !newWebview) {
+      return;
+    }
+
+    newWebview.addEventListener('dom-ready', () => {
+      newWebview.removeEventListener('dom-ready');
+      this._webView = newWebview;
+      this.props.setWebview(this);
+      this.addListeners();
+    });
+  }
+
+  addListeners() {
     const { setLoading } = this.props;
 
     this._webView.addEventListener('page-title-set', this.setTitle.bind(this));
@@ -71,25 +67,35 @@ export default class WebView extends Component {
   }
 
   render() {
-    const { sessionNamespace, url } = this.props;
+    const { hidden, sessionNamespace, url } = this.props;
+    let styles = {};
+    if (hidden) {
+      styles.display = 'none';
+    }
+
     return (
-      <div styleName='webview'>
+      <div styleName='webview' style={styles}>
         <webview
           autosize='on'
           nodeintegration='true'
           partition={'persist:' + sessionNamespace}
-          ref={c => this._webView = c}
+          ref={w => this.setWebview(w)}
           src={url}></webview>
       </div>
     );
   }
 }
 
+export default cssModules(WebView, styles);
+
 WebView.propTypes = {
   canNavigate: PropTypes.func,
+  hidden: PropTypes.bool,
   onChangeUrl: PropTypes.func.isRequired,
   sessionNamespace: PropTypes.string.isRequired,
   setFavicon: PropTypes.func,
   setLoading: PropTypes.func.isRequired,
+  setTitle: PropTypes.func.isRequired,
+  setWebview: PropTypes.func.isRequired,
   url: PropTypes.string.isRequired
 };

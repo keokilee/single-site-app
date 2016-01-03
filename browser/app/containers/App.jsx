@@ -1,48 +1,77 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import CSSModules from 'react-css-modules';
+import cssModules from 'react-css-modules';
 
 import Navigation from 'app/containers/Navigation';
-import Tabs from 'app/containers/Tabs';
-import WebView from 'app/components/WebView';
-import { setUrl, setLoading, setFavicon } from 'app/actions';
-import config from 'app/config';
-import whitelist from 'app/whitelist';
+import TabList from 'app/components/tabs/TabList';
+import WebViewList from 'app/components/WebViewList';
 import Menu from 'app/containers/Menu';
+
+import {
+  getConfig,
+  addTab,
+  removeTab,
+  changeTab,
+  setUrl,
+  setLoading,
+  setFavicon,
+  setTitle,
+  setWebview
+} from 'app/actions';
 
 import styles from 'styles/base.css';
 
-@CSSModules(styles)
-export class App extends Component {
+class App extends Component {
+  componentDidMount() {
+    this.props.dispatch(getConfig());
+  }
+
   render() {
-    const { dispatch } = this.props;
-    const canNavigate = whitelist(config.whitelist);
+    const { config, dispatch, tabIndex, tabs } = this.props;
 
     return (
       <div styleName='app'>
         <Menu />
-        <Navigation webview={this._webView} />
-        <Tabs />
-        <WebView
-          canNavigate={url => canNavigate(url)}
-          onChangeUrl={url => dispatch(setUrl(url))}
-          ref={c => this._webView = c}
+        <Navigation />
+        <TabList
+          onAddTab={() => dispatch(addTab())}
+          onChangeTab={(index) => dispatch(changeTab(index))}
+          onRemoveTab={(index) => dispatch(removeTab(index))}
+          tabIndex={tabIndex}
+          tabs={tabs} />
+
+        { config
+          ? <WebViewList
+          setUrl={(url, index) => dispatch(setUrl(url, index))}
           sessionNamespace={config.sessionNamespace}
-          setFavicon={i => dispatch(setFavicon(i))}
-          setLoading={l => dispatch(setLoading(l))}
+          setFavicon={(favicon, index) => dispatch(setFavicon(favicon, index))}
+          setLoading={(loading, index) => dispatch(setLoading(loading, index))}
+          setTitle={(title, index) => dispatch(setTitle(title, index))}
+          setWebview={(webview, index) => dispatch(setWebview(webview, index))}
+          tabIndex={tabIndex}
+          tabs={tabs}
           url={config.url}
-        />
+          />
+          : null
+        }
       </div>
     );
   }
 }
 
 App.propTypes = {
-  dispatch: PropTypes.func
+  config: PropTypes.object,
+  dispatch: PropTypes.func,
+  tabIndex: PropTypes.number,
+  tabs: PropTypes.array
 };
 
-function select(state) {
-  return {};
+function select({ config, tabs }) {
+  return {
+    config,
+    tabIndex: tabs.tabIndex,
+    tabs: tabs.tabs
+  };
 }
 
-export default connect(select)(App);
+export default cssModules(connect(select)(App), styles);

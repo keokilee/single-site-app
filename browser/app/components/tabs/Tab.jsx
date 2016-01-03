@@ -1,17 +1,15 @@
 import React, { Component, PropTypes } from 'react';
-import CSSModules from 'react-css-modules';
-import classnames from 'classnames';
+import cssModules from 'react-css-modules';
 
 import styles from 'styles/tabs/tab.css';
 
-@CSSModules(styles, { allowMultiple: true })
-export default class Tab extends Component {
+class Tab extends Component {
   render() {
     const { active, onChangeTab, onCloseTab, title } = this.props;
-    const classes = classnames('tab', active);
+    const className = active ? 'active-tab' : 'tab';
 
     return (
-      <div onClick={onChangeTab} styleName={classes}>
+      <div onClick={onChangeTab} styleName={className}>
         <span>{title}</span>
         <button onClick={onCloseTab}>
           <i className='material-icons'>clear</i>
@@ -20,6 +18,8 @@ export default class Tab extends Component {
     );
   }
 }
+
+export default cssModules(Tab, styles);
 
 Tab.propTypes = {
   active: PropTypes.bool,

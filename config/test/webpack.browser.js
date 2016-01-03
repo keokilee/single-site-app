@@ -9,6 +9,9 @@ module.exports = {
   debug: true,
   devtool: 'inline-source-map',
   entry: {},
+  externals: {
+    'electron': Object.keys(process.binding('natives'))
+  },
   module: {
     preLoaders: [{
       test: /\.jsx?$/,
