@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 const BROWSER_DIR = path.join(process.cwd(), 'browser', 'app');
 const STYLES_DIR = path.join(process.cwd(), 'browser', 'styles');
@@ -9,9 +10,6 @@ module.exports = {
   debug: true,
   devtool: 'inline-source-map',
   entry: {},
-  externals: {
-    'electron': Object.keys(process.binding('natives'))
-  },
   module: {
     preLoaders: [{
       test: /\.jsx?$/,
@@ -35,6 +33,9 @@ module.exports = {
     }]
   },
   output: {},
+  plugins: [
+    new webpack.ExternalsPlugin('commonjs', ['electron', ...Object.keys(process.binding('natives'))])
+  ],
   resolve: {
     alias: {
       'styles': STYLES_DIR,

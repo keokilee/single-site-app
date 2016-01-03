@@ -10,10 +10,10 @@ const { Menu, app } = remote;
 // This is a fake React component. Actually renders no DOM, but included in the app.
 class AppMenu extends Component {
   render() {
-    const { dispatch, tabIndex, config } = this.props;
+    const { dispatch, tabIndex, tabs, config } = this.props;
 
     if (config) {
-      const template = buildMenu(dispatch, config, tabIndex);
+      const template = buildMenu(dispatch, config, tabIndex, tabs);
       const menu = Menu.buildFromTemplate(template);
       Menu.setApplicationMenu(menu);
     }
@@ -25,12 +25,14 @@ class AppMenu extends Component {
 AppMenu.propTypes = {
   config: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
+  tabs: PropTypes.array,
   tabIndex: PropTypes.number
 };
 
 function select({ config, tabs }) {
   return {
     config,
+    tabs: tabs.tabs,
     tabIndex: tabs.tabIndex
   };
 }
@@ -38,7 +40,9 @@ function select({ config, tabs }) {
 export default connect(select)(AppMenu);
 
 // Helper function for building a template.
-function buildMenu(dispatch, config, currentTab) {
+function buildMenu(dispatch, config, tabIndex, tabs) {
+  const currentTab = tabs[tabIndex];
+
   const template = [
     {
       label: 'File',
@@ -50,7 +54,7 @@ function buildMenu(dispatch, config, currentTab) {
         }, {
           label: 'Close Tab',
           accelerator: 'CmdOrCtrl+W',
-          click: () => dispatch(removeTab(currentTab))
+          click: () => dispatch(removeTab(tabIndex))
         }, {
           type: 'separator'
         },
@@ -105,10 +109,8 @@ function buildMenu(dispatch, config, currentTab) {
         {
           label: 'Reload This Page',
           accelerator: 'CmdOrCtrl+R',
-          click: (item, focusedWindow) => {
-            if (focusedWindow) {
-              focusedWindow.reload();
-            }
+          click: () => {
+            currentTab.webview.handleRefresh();
           }
         },
         {
