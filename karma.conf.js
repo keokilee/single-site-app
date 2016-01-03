@@ -3,6 +3,7 @@ module.exports = function karmaConfig(config) {
     frameworks: [ 'mocha' ],
     reporters: [ 'spec', 'coverage' ],
     files: [
+      'node_modules/babel-polyfill/dist/polyfill.js',
       'spec/browser/**/*_spec.js',
       'spec/browser/**/*_spec.jsx'
     ],

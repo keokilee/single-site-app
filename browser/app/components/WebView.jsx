@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import cssModules from 'react-css-modules';
 
 import styles from 'styles/webview.css';
-import { shell } from 'electron';
 
 class WebView extends Component {
   setTitle({ title }) {
@@ -39,35 +38,24 @@ class WebView extends Component {
 
   handleNavigation({ url, isMainFrame }) {
     if (isMainFrame) {
-      const { canNavigate } = this.props;
-      console.log('navigating from ', this._webView.src, ' to ', url);
-      if (this._webView.src !== url && !canNavigate(url)) {
-        this._webView.stop();
-        shell.openExternal(url);
-
-        // SUCH A HACK!!!
-        // Currently, there is no event to handle possibility of navigation.
-        const original = this._webView.src;
-        setTimeout(() => {
-          this._webView.src = original;
-        }, 1);
-
-        return false;
-      }
       this.props.onChangeUrl(url);
     }
   }
 
-  setWebview(webview) {
-    if (this._webView) {
+  setWebview(newWebview) {
+    if (this._webView || !newWebview) {
       return;
     }
 
-    this._webView = webview;
-    this.props.setWebview(webview);
+    newWebview.addEventListener('dom-ready', () => {
+      newWebview.removeEventListener('dom-ready');
+      this._webView = newWebview;
+      this.props.setWebview(this);
+      this.addListeners();
+    });
   }
 
-  componentDidMount() {
+  addListeners() {
     const { setLoading } = this.props;
 
     this._webView.addEventListener('page-title-set', this.setTitle.bind(this));
@@ -91,7 +79,7 @@ class WebView extends Component {
           autosize='on'
           nodeintegration='true'
           partition={'persist:' + sessionNamespace}
-          ref={c => this.setWebview(c)}
+          ref={w => this.setWebview(w)}
           src={url}></webview>
       </div>
     );

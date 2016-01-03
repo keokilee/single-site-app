@@ -16,11 +16,11 @@
       ]
     },
     "test": {
-      "plugins": ["transform-decorators-legacy"]
+      "plugins": []
     },
 
     "production": {
-      "plugins": ["transform-decorators-legacy"]
+      "plugins": []
     }
   }
 }

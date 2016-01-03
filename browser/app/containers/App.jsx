@@ -7,9 +7,8 @@ import TabList from 'app/components/tabs/TabList';
 import WebViewList from 'app/components/WebViewList';
 import Menu from 'app/containers/Menu';
 
-import config from 'app/config';
-
 import {
+  getConfig,
   addTab,
   removeTab,
   changeTab,
@@ -23,8 +22,12 @@ import {
 import styles from 'styles/base.css';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.dispatch(getConfig());
+  }
+
   render() {
-    const { dispatch, tabIndex, tabs } = this.props;
+    const { config, dispatch, tabIndex, tabs } = this.props;
 
     return (
       <div styleName='app'>
@@ -37,7 +40,8 @@ class App extends Component {
           tabIndex={tabIndex}
           tabs={tabs} />
 
-        <WebViewList
+        { config
+          ? <WebViewList
           setUrl={(url, index) => dispatch(setUrl(url, index))}
           sessionNamespace={config.sessionNamespace}
           setFavicon={(favicon, index) => dispatch(setFavicon(favicon, index))}
@@ -47,20 +51,24 @@ class App extends Component {
           tabIndex={tabIndex}
           tabs={tabs}
           url={config.url}
-        />
+          />
+          : null
+        }
       </div>
     );
   }
 }
 
 App.propTypes = {
+  config: PropTypes.object,
   dispatch: PropTypes.func,
   tabIndex: PropTypes.number,
   tabs: PropTypes.array
 };
 
-function select({ tabs }) {
+function select({ config, tabs }) {
   return {
+    config,
     tabIndex: tabs.tabIndex,
     tabs: tabs.tabs
   };

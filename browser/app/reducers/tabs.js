@@ -9,7 +9,7 @@ import {
   REMOVE_TAB
 } from 'app/actions';
 
-let makeTabId = () => Math.floor(Date.now() / 1000);
+const makeTabId = () => Math.floor(Date.now() / 1000);
 
 const makeNewTab = () => {
   return {
