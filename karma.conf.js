@@ -12,7 +12,10 @@ module.exports = function karmaConfig(config) {
     browsers: [ 'Electron' ],
     singleRun: true,
     coverageReporter: {
-      type: 'text'
+      reporters: [
+        { type: 'text' },
+        { type: 'html', dir: 'build/tests/coverage' }
+      ]
     },
     webpack: require('./config/test/webpack.browser'),
     webpackMiddleware: {
