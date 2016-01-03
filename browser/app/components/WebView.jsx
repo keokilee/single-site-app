@@ -42,28 +42,29 @@ class WebView extends Component {
     }
   }
 
-  setWebview(newWebview) {
-    if (this._webView || !newWebview) {
+  setWebview(webview) {
+    if (this._webView || !webview) {
       return;
     }
 
-    newWebview.addEventListener('dom-ready', () => {
-      newWebview.removeEventListener('dom-ready');
-      this._webView = newWebview;
+    this.addListeners(webview);
+
+    webview.addEventListener('dom-ready', () => {
+      webview.removeEventListener('dom-ready');
+      this._webView = webview;
       this.props.setWebview(this);
-      this.addListeners();
     });
   }
 
-  addListeners() {
+  addListeners(webview) {
     const { setLoading } = this.props;
 
-    this._webView.addEventListener('page-title-set', this.setTitle.bind(this));
-    this._webView.addEventListener('page-favicon-updated', this.faviconUpdated.bind(this));
-    this._webView.addEventListener('load-commit', this.handleNavigation.bind(this));
-    this._webView.addEventListener('did-start-loading', setLoading.bind(this, true));
-    this._webView.addEventListener('did-finish-load', setLoading.bind(this, false));
-    this._webView.addEventListener('did-fail-load', setLoading.bind(this, false));
+    webview.addEventListener('page-title-set', this.setTitle.bind(this));
+    webview.addEventListener('page-favicon-updated', this.faviconUpdated.bind(this));
+    webview.addEventListener('load-commit', this.handleNavigation.bind(this));
+    webview.addEventListener('did-start-loading', setLoading.bind(this, true));
+    webview.addEventListener('did-finish-load', setLoading.bind(this, false));
+    webview.addEventListener('did-fail-load', setLoading.bind(this, false));
   }
 
   render() {
