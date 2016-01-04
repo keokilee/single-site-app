@@ -30,6 +30,10 @@ module.exports = {
       loader: 'babel'
     }]
   },
+  node: {
+    __filename: true,
+    __dirname: true
+  },
   output: {
     filename: 'app.bundle.js',
     path: BUILD_DIR
