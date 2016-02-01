@@ -1,9 +1,9 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require('path')
+const webpack = require('webpack')
 
-const BROWSER_DIR = path.join(process.cwd(), 'browser', 'app');
-const STYLES_DIR = path.join(process.cwd(), 'browser', 'styles');
-const TEST_DIR = path.join(process.cwd(), 'spec', 'browser');
+const BROWSER_DIR = path.join(process.cwd(), 'browser', 'app')
+const STYLES_DIR = path.join(process.cwd(), 'browser', 'styles')
+const TEST_DIR = path.join(process.cwd(), 'spec', 'browser')
 
 module.exports = {
   context: process.cwd(),
@@ -43,4 +43,4 @@ module.exports = {
     },
     extensions: ['', '.js', '.jsx']
   }
-};
+}

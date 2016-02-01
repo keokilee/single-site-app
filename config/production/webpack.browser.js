@@ -1,10 +1,10 @@
-const webpack = require('webpack');
-const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack')
+const path = require('path')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-const BROWSER_DIR = path.join(process.cwd(), 'browser', 'app');
-const STYLES_DIR = path.join(process.cwd(), 'browser', 'styles');
-const DIST_DIR = path.join(process.cwd(), 'dist', 'browser', 'assets');
+const BROWSER_DIR = path.join(process.cwd(), 'browser', 'app')
+const STYLES_DIR = path.join(process.cwd(), 'browser', 'styles')
+const DIST_DIR = path.join(process.cwd(), 'dist', 'browser', 'assets')
 
 module.exports = {
   context: process.cwd(),
@@ -49,4 +49,4 @@ module.exports = {
       'app': BROWSER_DIR
     }
   }
-};
+}

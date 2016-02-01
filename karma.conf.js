@@ -1,4 +1,4 @@
-module.exports = function karmaConfig(config) {
+module.exports = function karmaConfig (config) {
   config.set({
     frameworks: [ 'mocha' ],
     reporters: [ 'spec', 'coverage' ],
@@ -21,5 +21,5 @@ module.exports = function karmaConfig(config) {
     webpackMiddleware: {
       noInfo: true
     }
-  });
-};
+  })
+}

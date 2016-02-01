@@ -1,24 +1,24 @@
-import process from 'process';
-import { remote } from 'electron';
-import { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
+import process from 'process'
+import { remote } from 'electron'
+import { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-import { addTab, removeTab } from 'app/actions';
+import { addTab, removeTab } from 'app/actions'
 
-const { Menu, app } = remote;
+const { Menu, app } = remote
 
 // This is a fake React component. Actually renders no DOM, but included in the app.
 class AppMenu extends Component {
-  render() {
-    const { dispatch, tabIndex, tabs, config } = this.props;
+  render () {
+    const { dispatch, tabIndex, tabs, config } = this.props
 
     if (config) {
-      const template = buildMenu(dispatch, config, tabIndex, tabs);
-      const menu = Menu.buildFromTemplate(template);
-      Menu.setApplicationMenu(menu);
+      const template = buildMenu(dispatch, config, tabIndex, tabs)
+      const menu = Menu.buildFromTemplate(template)
+      Menu.setApplicationMenu(menu)
     }
 
-    return null;
+    return null
   }
 }
 
@@ -27,21 +27,21 @@ AppMenu.propTypes = {
   dispatch: PropTypes.func.isRequired,
   tabs: PropTypes.array,
   tabIndex: PropTypes.number
-};
+}
 
-function select({ config, tabs }) {
+function select ({ config, tabs }) {
   return {
     config,
     tabs: tabs.tabs,
     tabIndex: tabs.tabIndex
-  };
+  }
 }
 
-export default connect(select)(AppMenu);
+export default connect(select)(AppMenu)
 
 // Helper function for building a template.
-function buildMenu(dispatch, config, tabIndex, tabs) {
-  const currentTab = tabs[tabIndex];
+function buildMenu (dispatch, config, tabIndex, tabs) {
+  const currentTab = tabs[tabIndex]
 
   const template = [
     {
@@ -110,7 +110,7 @@ function buildMenu(dispatch, config, tabIndex, tabs) {
           label: 'Reload This Page',
           accelerator: 'CmdOrCtrl+R',
           click: () => {
-            currentTab.webview.handleRefresh();
+            currentTab.webview.handleRefresh()
           }
         },
         {
@@ -118,7 +118,7 @@ function buildMenu(dispatch, config, tabIndex, tabs) {
           accelerator: process.platform === 'darwin' ? 'Ctrl+Command+F' : 'F11',
           click: (item, focusedWindow) => {
             if (focusedWindow) {
-              focusedWindow.setFullScreen(!focusedWindow.isFullScreen());
+              focusedWindow.setFullScreen(!focusedWindow.isFullScreen())
             }
           }
         },
@@ -127,7 +127,7 @@ function buildMenu(dispatch, config, tabIndex, tabs) {
           accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
           click: (item, focusedWindow) => {
             if (focusedWindow) {
-              focusedWindow.toggleDevTools();
+              focusedWindow.toggleDevTools()
             }
           }
         }
@@ -159,10 +159,10 @@ function buildMenu(dispatch, config, tabIndex, tabs) {
         }
       ]
     }
-  ];
+  ]
 
   if (process.platform === 'darwin') {
-    const name = config.name;
+    const name = config.name
 
     template.unshift({
       label: name,
@@ -200,7 +200,7 @@ function buildMenu(dispatch, config, tabIndex, tabs) {
           type: 'separator'
         }
       ]
-    });
+    })
     // Window menu.
     template[3].submenu.push(
       {
@@ -210,8 +210,8 @@ function buildMenu(dispatch, config, tabIndex, tabs) {
         label: 'Bring All to Front',
         role: 'front'
       }
-    );
+    )
   }
 
-  return template;
+  return template
 }

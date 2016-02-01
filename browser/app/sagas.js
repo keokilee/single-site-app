@@ -1,27 +1,27 @@
-import { call, take, put } from 'redux-saga';
-import { ipcRenderer } from 'electron';
+import { call, take, put } from 'redux-saga'
+import { ipcRenderer } from 'electron'
 
-import { GET_CONFIG, setConfig } from 'app/actions';
+import { GET_CONFIG, setConfig } from 'app/actions'
 
-function ipcListenOnce(eventName) {
+function ipcListenOnce (eventName) {
   return new Promise((resolve, reject) => {
     ipcRenderer.on(eventName, (_, err, ...response) => {
       if (err) {
-        reject(err);
+        reject(err)
       } else {
-        resolve(response);
+        resolve(response)
       }
-    });
-  });
+    })
+  })
 }
 
-function * fetchConfig() {
+function * fetchConfig () {
   while (yield take(GET_CONFIG)) {
-    ipcRenderer.send('get-config');
-    const [config] = yield call(ipcListenOnce, 'get-config-reply');
+    ipcRenderer.send('get-config')
+    const [config] = yield call(ipcListenOnce, 'get-config-reply')
 
-    yield put(setConfig(config));
+    yield put(setConfig(config))
   }
 }
 
-export default [fetchConfig];
+export default [fetchConfig]

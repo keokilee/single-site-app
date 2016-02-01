@@ -1,8 +1,8 @@
-const webpack = require('webpack');
-const path = require('path');
+const webpack = require('webpack')
+const path = require('path')
 
-const BROWSER_DIR = path.join(process.cwd(), 'browser', 'app');
-const STYLES_DIR = path.join(process.cwd(), 'browser', 'styles');
+const BROWSER_DIR = path.join(process.cwd(), 'browser', 'app')
+const STYLES_DIR = path.join(process.cwd(), 'browser', 'styles')
 
 module.exports = {
   context: process.cwd(),
@@ -61,4 +61,4 @@ module.exports = {
       'app': BROWSER_DIR
     }
   }
-};
+}

@@ -1,11 +1,11 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
+import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-import Header from 'app/components/Header';
+import Header from 'app/components/Header'
 
 export default class Navigation extends Component {
-  render() {
-    const { loading, favicon, webview, url, title } = this.props;
+  render () {
+    const { loading, favicon, webview, url, title } = this.props
 
     return (
       <Header
@@ -20,7 +20,7 @@ export default class Navigation extends Component {
         title={title}
         url={url}
       />
-    );
+    )
   }
 }
 
@@ -34,10 +34,10 @@ Navigation.propTypes = {
   title: PropTypes.string,
   url: PropTypes.string,
   webview: PropTypes.any
-};
-
-function select({ tabs }) {
-  return tabs.tabs[tabs.tabIndex];
 }
 
-export default connect(select)(Navigation);
+function select ({ tabs }) {
+  return tabs.tabs[tabs.tabIndex]
+}
+
+export default connect(select)(Navigation)

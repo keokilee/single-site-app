@@ -6,23 +6,11 @@
   "env": {
     "browser": true,
     "node": true,
-    "mocha": true
+    "mocha": true,
+    "es6": true
   },
   "parser": "babel-eslint",
   "extends": [ "standard", "standard-react" ],
-  "rules": {
-    "quotes": [2, "single"],
-    "strict": [2, "never"],
-    "semi": [2, "always"],
-    "no-unused-vars": [2, {"args": "after-used", "argsIgnorePattern": "^_"}],
-    "space-before-function-paren": [2, "never"],
-    "babel/new-cap": 1,
-    "babel/object-shorthand": 1,
-    "babel/no-await-in-loop": 1,
-    "react/jsx-uses-react": 2,
-    "react/jsx-uses-vars": 2,
-    "react/react-in-jsx-scope": 2
-  },
   "plugins": [
     "babel",
     "react",

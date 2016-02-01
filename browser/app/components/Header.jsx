@@ -1,10 +1,10 @@
-import React, { Component, PropTypes } from 'react';
-import cssModules from 'react-css-modules';
+import React, { Component, PropTypes } from 'react'
+import cssModules from 'react-css-modules'
 
-import styles from 'styles/header.css';
+import styles from 'styles/header.css'
 
 class Header extends Component {
-  render() {
+  render () {
     const {
       enableBack,
       onBack,
@@ -15,9 +15,9 @@ class Header extends Component {
       enableForward,
       loading,
       onForward
-    } = this.props;
+    } = this.props
 
-    document.title = title;
+    document.title = title
 
     return (
       <div styleName='header'>
@@ -39,11 +39,11 @@ class Header extends Component {
           {url}
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default cssModules(Header, styles);
+export default cssModules(Header, styles)
 
 Header.propTypes = {
   enableBack: PropTypes.func.isRequired,
@@ -56,4 +56,4 @@ Header.propTypes = {
   onStop: PropTypes.func,
   title: PropTypes.string,
   url: PropTypes.string
-};
+}

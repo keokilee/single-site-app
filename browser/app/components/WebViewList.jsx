@@ -1,11 +1,11 @@
-import React, { Component, PropTypes } from 'react';
-import cssModules from 'react-css-modules';
+import React, { Component, PropTypes } from 'react'
+import cssModules from 'react-css-modules'
 
-import WebView from './WebView';
-import styles from 'styles/webview.css';
+import WebView from './WebView'
+import styles from 'styles/webview.css'
 
 class WebViewList extends Component {
-  render() {
+  render () {
     const {
       tabs,
       tabIndex,
@@ -16,7 +16,7 @@ class WebViewList extends Component {
       setTitle,
       setWebview,
       url
-    } = this.props;
+    } = this.props
 
     return (
       <div styleName={tabs.length > 1 ? 'webviews--tabs' : 'webviews'}>
@@ -31,14 +31,14 @@ class WebViewList extends Component {
             setFavicon={i => setFavicon(i, index)}
             setLoading={l => setLoading(l, index)}
             setTitle={t => setTitle(t, index)}
-            url={url} />;
+            url={url} />
         })}
       </div>
-    );
+    )
   }
 }
 
-export default cssModules(WebViewList, styles);
+export default cssModules(WebViewList, styles)
 
 WebViewList.propTypes = {
   setUrl: PropTypes.func.isRequired,
@@ -50,4 +50,4 @@ WebViewList.propTypes = {
   tabIndex: PropTypes.number.isRequired,
   tabs: PropTypes.array.isRequired,
   url: PropTypes.string
-};
+}
