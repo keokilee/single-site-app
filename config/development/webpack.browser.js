@@ -6,9 +6,6 @@ const STYLES_DIR = path.join(process.cwd(), 'browser', 'styles');
 
 module.exports = {
   context: process.cwd(),
-  cssnext: {
-    browsers: 'last 2 versions'
-  },
   debug: true,
   devtool: 'eval',
   entry: [
@@ -30,7 +27,7 @@ module.exports = {
       loaders: [
         'style',
         'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-        'cssnext'
+        'postcss'
       ]
     }]
   },
@@ -43,6 +40,19 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.ExternalsPlugin('commonjs', ['electron', ...Object.keys(process.binding('natives'))])
+  ],
+  postcss: (compiler) => [
+    require('postcss-import')({
+      addDependencyTo: compiler
+    }),
+    require('autoprefixer')({
+      browsers: ['last 2 versions']
+    }),
+    require('postcss-font-magician')(),
+    require('postcss-url')(),
+    require('postcss-cssnext')(),
+    require('postcss-browser-reporter')(),
+    require('postcss-reporter')()
   ],
   resolve: {
     extensions: ['', '.jsx', '.js'],

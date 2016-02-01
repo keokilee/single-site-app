@@ -7,7 +7,7 @@ const config = require('../config/development/webpack.app');
 const electronPath = path.join(process.cwd(), 'node_modules', '.bin', 'electron');
 
 // Need to track if app started, otherwise get double render.
-let started = false;
+var started = false;
 
 nodemon({
   execMap: { js: `${electronPath}` },
