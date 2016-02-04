@@ -54,7 +54,7 @@
     "eslint-config-standard": "^4.1.0",
     "eslint-config-standard-react": "^1.2.1",
     "eslint-loader": "^1.2.0",
-    "eslint-plugin-babel": "^3.0.0",
+    "eslint-plugin-babel": "^3.1.0",
     "eslint-plugin-react": "^3.10.0",
     "eslint-plugin-standard": "^1.2.0",
     "expect": "^1.13.1",
