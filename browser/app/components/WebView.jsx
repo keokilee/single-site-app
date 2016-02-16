@@ -1,9 +1,19 @@
 import React, { Component, PropTypes } from 'react'
 import cssModules from 'react-css-modules'
+import _ from 'lodash/function'
 
 import styles from 'styles/webview.css'
 
+const THROTTLE_PERIOD = 1000
+
 class WebView extends Component {
+  constructor () {
+    super()
+    this.state = {
+      setListeners: false
+    }
+  }
+
   setTitle ({ title }) {
     this.props.setTitle(title)
   }
@@ -18,6 +28,10 @@ class WebView extends Component {
 
   canGoForward () {
     return this._webView && this._webView.canGoForward()
+  }
+
+  handleHome () {
+    this._webView.setAttribute('src', this.props.initialUrl)
   }
 
   handleBack () {
@@ -47,10 +61,17 @@ class WebView extends Component {
       return
     }
 
-    this.addListeners(webview)
+    if (!this.state.setListeners) {
+      this.addListeners(webview)
+      this.setState({ setListeners: true })
+    }
 
     webview.addEventListener('dom-ready', () => {
       webview.removeEventListener('dom-ready')
+      if (this._webView) {
+        return
+      }
+
       this._webView = webview
       this.props.setWebview(this)
     })
@@ -60,15 +81,15 @@ class WebView extends Component {
     const { setLoading } = this.props
 
     webview.addEventListener('page-title-set', this.setTitle.bind(this))
-    webview.addEventListener('page-favicon-updated', this.faviconUpdated.bind(this))
+    webview.addEventListener('page-favicon-updated', _.throttle(this.faviconUpdated.bind(this), THROTTLE_PERIOD))
     webview.addEventListener('load-commit', this.handleNavigation.bind(this))
-    webview.addEventListener('did-start-loading', setLoading.bind(this, true))
-    webview.addEventListener('did-finish-load', setLoading.bind(this, false))
-    webview.addEventListener('did-fail-load', setLoading.bind(this, false))
+    webview.addEventListener('did-start-loading', _.throttle(setLoading.bind(this, true), THROTTLE_PERIOD))
+    webview.addEventListener('did-finish-load', _.throttle(setLoading.bind(this, false), THROTTLE_PERIOD))
+    webview.addEventListener('did-fail-load', _.throttle(setLoading.bind(this, false), THROTTLE_PERIOD))
   }
 
   render () {
-    const { hidden, sessionNamespace, url } = this.props
+    const { hidden, sessionNamespace, initialUrl } = this.props
     let styles = {}
     if (hidden) {
       styles.display = 'none'
@@ -81,7 +102,7 @@ class WebView extends Component {
           nodeintegration='true'
           partition={'persist:' + sessionNamespace}
           ref={w => this.setWebview(w)}
-          src={url}></webview>
+          src={initialUrl}></webview>
       </div>
     )
   }
@@ -98,5 +119,5 @@ WebView.propTypes = {
   setLoading: PropTypes.func.isRequired,
   setTitle: PropTypes.func.isRequired,
   setWebview: PropTypes.func.isRequired,
-  url: PropTypes.string.isRequired
+  initialUrl: PropTypes.string.isRequired
 }

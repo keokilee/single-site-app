@@ -6,7 +6,8 @@ import {
   SET_WEBVIEW,
   ADD_TAB,
   CHANGE_TAB,
-  REMOVE_TAB
+  REMOVE_TAB,
+  REMOVE_ACTIVE_TAB
 } from 'app/actions'
 
 const makeTabId = () => Math.floor(Date.now() / 1000)
@@ -46,7 +47,7 @@ export function tabs (state = INITIAL_STATE, action) {
         ]
       }
 
-    // navigation
+    // Navigation updates
     case SET_URL:
       const url = action.url
 
@@ -141,6 +142,26 @@ export function tabs (state = INITIAL_STATE, action) {
         ]
       }
 
+    case REMOVE_ACTIVE_TAB:
+      if (state.tabs.length === 1) {
+        return state
+      }
+
+      currentIndex = state.tabIndex
+      let tabIndex = currentIndex
+
+      if (tabIndex > 0) {
+        tabIndex -= 1
+      }
+
+      return {
+        ...state,
+        tabIndex,
+        tabs: [
+          ...state.tabs.slice(0, currentIndex),
+          ...state.tabs.slice(currentIndex + 1)
+        ]
+      }
     default:
       return state
   }

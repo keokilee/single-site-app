@@ -10,7 +10,7 @@ class Tab extends Component {
 
     return (
       <div onClick={onChangeTab} styleName={className}>
-        <span>{title}</span>
+        <div styleName='tab-text'>{title}</div>
         <button onClick={onCloseTab}>
           <i className='material-icons'>clear</i>
         </button>

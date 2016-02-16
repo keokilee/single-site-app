@@ -10,6 +10,7 @@ export const SET_WEBVIEW = 'SET_WEBVIEW'
 export const ADD_TAB = 'ADD_TAB'
 export const CHANGE_TAB = 'CHANGE_TAB'
 export const REMOVE_TAB = 'REMOVE_TAB'
+export const REMOVE_ACTIVE_TAB = 'REMOVE_ACTIVE_TAB'
 
 // get/set config
 export function getConfig () {
@@ -20,6 +21,7 @@ export function setConfig (config) {
   return { type: SET_CONFIG, config }
 }
 
+// Navigation handlers
 export function setTitle (title, tabIndex) {
   return { type: SET_TITLE, title, tabIndex }
 }
@@ -40,6 +42,7 @@ export function setFavicon (favicon, tabIndex) {
   return { type: SET_FAVICON, favicon, tabIndex }
 }
 
+// Tab management
 export function addTab () {
   return { type: ADD_TAB }
 }
@@ -50,4 +53,8 @@ export function changeTab (tabIndex) {
 
 export function removeTab (tabIndex) {
   return { type: REMOVE_TAB, tabIndex }
+}
+
+export function removeActiveTab () {
+  return { type: REMOVE_ACTIVE_TAB }
 }

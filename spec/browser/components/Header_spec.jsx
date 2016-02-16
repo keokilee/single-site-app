@@ -38,9 +38,9 @@ describe('Header', () => {
       return scryRenderedDOMComponentsWithTag(component, 'button')
     }
 
-    it('has four buttons', () => {
+    it('has three buttons', () => {
       const buttons = renderButtons()
-      expect(buttons.length).toEqual(4)
+      expect(buttons.length).toEqual(3)
     })
 
     describe('back', () => {
@@ -90,54 +90,6 @@ describe('Header', () => {
 
         const forwardButton = renderButtons()[1]
         Simulate.click(forwardButton)
-        expect(spy).toHaveBeenCalled()
-      })
-    })
-
-    describe('refresh', () => {
-      it('is not hidden if the page is not loading', () => {
-        headerProps.loading = false
-        const refreshButton = renderButtons()[2]
-        expect(refreshButton.hidden).toBe(false)
-      })
-
-      it('is hidden if the page is loading', () => {
-        headerProps.loading = true
-        const refreshButton = renderButtons()[2]
-        expect(refreshButton.hidden).toBe(true)
-      })
-
-      it('triggers the onRefresh function if the button is clicked', () => {
-        headerProps.loading = false
-        headerProps.onRefresh = () => 'yo'
-        const spy = spyOn(headerProps, 'onRefresh')
-
-        const refreshButton = renderButtons()[2]
-        Simulate.click(refreshButton)
-        expect(spy).toHaveBeenCalled()
-      })
-    })
-
-    describe('stop', () => {
-      it('is not hidden if the page is loading', () => {
-        headerProps.loading = true
-        const stopButton = renderButtons()[3]
-        expect(stopButton.hidden).toBe(false)
-      })
-
-      it('is hidden if the page is not loading', () => {
-        headerProps.loading = false
-        const stopButton = renderButtons()[3]
-        expect(stopButton.hidden).toBe(true)
-      })
-
-      it('triggers the onStop function if the button is clicked', () => {
-        headerProps.loading = true
-        headerProps.onStop = () => 'yo'
-        const spy = spyOn(headerProps, 'onStop')
-
-        const stopButton = renderButtons()[3]
-        Simulate.click(stopButton)
         expect(spy).toHaveBeenCalled()
       })
     })
