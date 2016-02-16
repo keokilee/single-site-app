@@ -1,4 +1,4 @@
-import { call, take, put } from 'redux-saga'
+import { call, takeEvery, put } from 'redux-saga'
 import { ipcRenderer } from 'electron'
 
 import { GET_CONFIG, setConfig } from 'app/actions'
@@ -15,13 +15,15 @@ function ipcListenOnce (eventName) {
   })
 }
 
-function * fetchConfig () {
-  while (yield take(GET_CONFIG)) {
-    ipcRenderer.send('get-config')
-    const [config] = yield call(ipcListenOnce, 'get-config-reply')
+function * fetchConfigWorker () {
+  ipcRenderer.send('get-config')
+  const [config] = yield call(ipcListenOnce, 'get-config-reply')
 
-    yield put(setConfig(config))
-  }
+  yield put(setConfig(config))
 }
 
-export default [fetchConfig]
+function * fetchConfigSaga () {
+  yield * takeEvery(GET_CONFIG, fetchConfigWorker)
+}
+
+export default [fetchConfigSaga]
