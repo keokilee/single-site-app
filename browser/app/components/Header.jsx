@@ -8,13 +8,11 @@ class Header extends Component {
     const {
       enableBack,
       onBack,
-      onRefresh,
-      onStop,
       title,
       url,
       enableForward,
-      loading,
-      onForward
+      onForward,
+      onHome
     } = this.props
 
     document.title = title
@@ -28,11 +26,8 @@ class Header extends Component {
           <button disabled={!enableForward()} onClick={onForward}>
             <i className='material-icons'>keyboard_arrow_right</i>
           </button>
-          <button hidden={loading} onClick={onRefresh}>
-            <i className='material-icons'>refresh</i>
-          </button>
-          <button hidden={!loading} onClick={onStop}>
-            <i className='material-icons'>clear</i>
+          <button onClick={onHome}>
+            <i className='material-icons'>home</i>
           </button>
         </div>
         <div styleName='title-cell'>
@@ -49,11 +44,9 @@ Header.propTypes = {
   enableBack: PropTypes.func.isRequired,
   enableForward: PropTypes.func.isRequired,
   favicon: PropTypes.string,
-  loading: PropTypes.bool,
   onBack: PropTypes.func,
   onForward: PropTypes.func,
-  onRefresh: PropTypes.func,
-  onStop: PropTypes.func,
+  onHome: PropTypes.func,
   title: PropTypes.string,
   url: PropTypes.string
 }

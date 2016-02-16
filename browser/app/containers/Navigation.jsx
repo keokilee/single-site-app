@@ -5,18 +5,16 @@ import Header from 'app/components/Header'
 
 export default class Navigation extends Component {
   render () {
-    const { loading, favicon, webview, url, title } = this.props
+    const { favicon, webview, url, title } = this.props
 
     return (
       <Header
         enableBack={() => webview && webview.canGoBack()}
         enableForward={() => webview && webview.canGoForward()}
         favicon={favicon}
-        loading={loading}
         onBack={e => webview.handleBack(e)}
         onForward={e => webview.handleForward(e)}
-        onRefresh={e => webview.handleRefresh(e)}
-        onStop={e => webview.handleStop(e)}
+        onHome={() => webview.handleHome()}
         title={title}
         url={url}
       />
