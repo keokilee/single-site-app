@@ -11,19 +11,26 @@ import {
   getConfig,
   addTab,
   removeTab,
-  changeTab,
-  setUrl,
-  setLoading,
-  setFavicon,
-  setTitle,
-  setWebview
+  removeActiveTab,
+  changeTab
 } from 'app/actions'
 
 import styles from 'styles/base.css'
 
 class App extends Component {
+  handleCloseEvent (e) {
+    const { dispatch, tabs } = this.props
+    if (tabs.length > 1) {
+      dispatch(removeActiveTab())
+      e.returnValue = false
+    }
+  }
+
   componentDidMount () {
     this.props.dispatch(getConfig())
+
+    // Attach close event.
+    window.onbeforeunload = (e) => this.handleCloseEvent(e)
   }
 
   render () {
@@ -42,12 +49,7 @@ class App extends Component {
 
         { config
           ? <WebViewList
-          setUrl={(url, index) => dispatch(setUrl(url, index))}
           sessionNamespace={config.sessionNamespace}
-          setFavicon={(favicon, index) => dispatch(setFavicon(favicon, index))}
-          setLoading={(loading, index) => dispatch(setLoading(loading, index))}
-          setTitle={(title, index) => dispatch(setTitle(title, index))}
-          setWebview={(webview, index) => dispatch(setWebview(webview, index))}
           tabIndex={tabIndex}
           tabs={tabs}
           url={config.url}

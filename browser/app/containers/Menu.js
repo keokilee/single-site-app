@@ -3,7 +3,7 @@ import { remote } from 'electron'
 import { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import { addTab, removeTab } from 'app/actions'
+import { addTab } from 'app/actions'
 
 const { Menu, app } = remote
 
@@ -54,7 +54,7 @@ function buildMenu (dispatch, config, tabIndex, tabs) {
         }, {
           label: 'Close Tab',
           accelerator: 'CmdOrCtrl+W',
-          click: () => dispatch(removeTab(tabIndex))
+          role: 'close'
         }, {
           type: 'separator'
         },
@@ -141,11 +141,6 @@ function buildMenu (dispatch, config, tabIndex, tabs) {
           label: 'Minimize',
           accelerator: 'CmdOrCtrl+M',
           role: 'minimize'
-        },
-        {
-          label: 'Close',
-          accelerator: 'CmdOrCtrl+W',
-          role: 'close'
         }
       ]
     },

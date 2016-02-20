@@ -30,7 +30,7 @@ describe('Tab', () => {
       }
 
       const tab = renderTab(props)
-      const tabTitle = scryRenderedDOMComponentsWithTag(tab, 'span')[0]
+      const tabTitle = scryRenderedDOMComponentsWithTag(tab, 'div')[1]
       expect(tabTitle.textContent).toEqual(title)
     })
   })
