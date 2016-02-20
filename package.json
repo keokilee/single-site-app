@@ -87,7 +87,7 @@
     "rimraf": "^2.5.0",
     "source-map-support": "^0.4.0",
     "style-loader": "^0.13.0",
-    "webpack": "^1.12.10",
+    "webpack": "^1.12.13",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-hot-middleware": "^2.5.0"
   }
