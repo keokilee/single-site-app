@@ -1,60 +1,27 @@
 import 'babel-polyfill'
 import React from 'react'
 import { render } from 'react-dom'
-import { compose, createStore, applyMiddleware } from 'redux'
-import { persistState } from 'redux-devtools'
-import { Provider } from 'react-redux'
-import sagaMiddleware from 'redux-saga'
 
-import webviewApp from './reducers'
-import App from './containers/App'
-import DevTools from './containers/DevTools'
+import reducers from './reducers'
 import sagas from 'app/sagas'
-
-function buildDevStore () {
-  const DevTools = require('./containers/DevTools').default
-  const logger = require('redux-logger')
-
-  return compose(
-    applyMiddleware(sagaMiddleware(...sagas), logger()),
-    DevTools.instrument(),
-    persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
-  )(createStore)
-}
-
-function configureStore () {
-  const store = buildDevStore()(webviewApp)
-
-  if (module.hot) {
-    module.hot.accept('./reducers', () => {
-      const nextReducer = require('./reducers').webviewApp
-      store.replaceReducer(nextReducer)
-    })
-  }
-
-  return store
-}
+import App from './containers/App'
 
 if (process.env.NODE_ENV !== 'production') {
-  const store = configureStore()
+  const DevelopmentEntry = require('app/entry_points/Development').default
+
   render(
-    <Provider store={store}>
-      <div>
-        <App />
-        <DevTools />
-      </div>
-    </Provider>,
+    <DevelopmentEntry sagas={sagas} reducers={reducers}>
+      <App />
+    </DevelopmentEntry>,
     document.getElementById('app')
   )
 } else {
-  const store = createStore(webviewApp)
+  const ProductionEntry = require('app/entry_points/Production').default
 
   render(
-    <Provider store={store}>
-      <div>
-        <App />
-      </div>
-    </Provider>,
+    <ProductionEntry sagas={sagas} reducers={reducers}>
+      <App />
+    </ProductionEntry>,
     document.getElementById('app')
   )
 }

@@ -39,7 +39,10 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new webpack.ExternalsPlugin('commonjs', ['electron', ...Object.keys(process.binding('natives'))])
+    new webpack.ExternalsPlugin('commonjs', ['electron', ...Object.keys(process.binding('natives'))]),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
+    })
   ],
   postcss: (compiler) => [
     require('postcss-import')({
