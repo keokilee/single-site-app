@@ -1,7 +1,7 @@
 import expect from 'expect'
 
-import sagas from 'app/sagas'
-import { GET_CONFIG } from 'app/actions'
+import sagas from 'browser/sagas'
+import { GET_CONFIG } from 'browser/actions'
 
 describe('sagas', () => {
   const [fetchConfig] = sagas

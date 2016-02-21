@@ -1,6 +1,6 @@
 import expect from 'expect'
 
-import { tabs } from 'app/reducers/tabs'
+import { tabs } from 'browser/reducers/tabs'
 import {
   addTab,
   changeTab,
@@ -9,7 +9,7 @@ import {
   setUrl,
   setLoading,
   setFavicon
-} from 'app/actions'
+} from 'browser/actions'
 
 describe('reducers/tabs', () => {
   const initialState = tabs(undefined, {})

@@ -1,3 +1,5 @@
+require('babel-register')
+
 module.exports = function karmaConfig (config) {
   config.set({
     frameworks: [ 'mocha' ],
@@ -17,7 +19,7 @@ module.exports = function karmaConfig (config) {
         { type: 'html', dir: 'build/tests/coverage' }
       ]
     },
-    webpack: require('./config/test/webpack.browser'),
+    webpack: require('./config/webpack.browser.babel'),
     webpackMiddleware: {
       noInfo: true
     }

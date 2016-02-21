@@ -1,7 +1,7 @@
 import expect from 'expect'
 
-import { config } from 'app/reducers/config'
-import { getConfig, setConfig } from 'app/actions'
+import { config } from 'browser/reducers/config'
+import { getConfig, setConfig } from 'browser/actions'
 
 describe('reducers/config', () => {
   const initialState = config(undefined, getConfig())

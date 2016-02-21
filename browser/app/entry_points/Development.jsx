@@ -5,22 +5,18 @@ import { Provider } from 'react-redux'
 import sagaMiddleware from 'redux-saga'
 import logger from 'redux-logger'
 
-import DevTools from 'app/containers/DevTools'
+import DevTools from 'browser/containers/DevTools'
 
-function buildDevStore (sagas) {
-  return compose(
+function configureStore (sagas, reducers) {
+  const store = createStore(reducers, compose(
     applyMiddleware(sagaMiddleware(...sagas), logger()),
     DevTools.instrument(),
     persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
-  )(createStore)
-}
-
-function configureStore (sagas, reducers) {
-  const store = buildDevStore(sagas)(reducers)
+  ))
 
   if (module.hot) {
-    module.hot.accept('app/reducers', () => {
-      const nextReducer = require('app/reducers').default
+    module.hot.accept('browser/reducers', () => {
+      const nextReducer = require('browser/reducers').default
       store.replaceReducer(nextReducer)
     })
   }

@@ -1,11 +1,32 @@
-import { call, takeEvery, put } from 'redux-saga'
+import { takeEvery } from 'redux-saga'
+import { take, call, put } from 'redux-saga/effects'
 import { ipcRenderer } from 'electron'
 
-import { GET_CONFIG, setConfig } from 'app/actions'
+import * as AppConstants from 'app-constants'
+import { setConfig } from 'browser/actions'
+
+function * saveStateSaga (getState) {
+  while (true) {
+    // Find any action that updates the browser state
+    const action = yield take('*')
+    if (action.type.match(/SET_URL/)) {
+      // We only care about a subset of the state
+      const { tabIndex, tabs } = getState().tabs
+      const saveState = {
+        tabIndex,
+        tabs: tabs.map(({ id, url, title, favicon }) => {
+          return { id, url, title, favicon }
+        })
+      }
+
+      ipcRenderer.send('save-state', JSON.stringify(saveState))
+    }
+  }
+}
 
 function ipcListenOnce (eventName) {
   return new Promise((resolve, reject) => {
-    ipcRenderer.on(eventName, (_, err, ...response) => {
+    ipcRenderer.once(eventName, (_, err, ...response) => {
       if (err) {
         reject(err)
       } else {
@@ -23,7 +44,7 @@ function * fetchConfigWorker () {
 }
 
 function * fetchConfigSaga () {
-  yield * takeEvery(GET_CONFIG, fetchConfigWorker)
+  yield * takeEvery(AppConstants.GET_CONFIG, fetchConfigWorker)
 }
 
-export default [fetchConfigSaga]
+export default [fetchConfigSaga, saveStateSaga]

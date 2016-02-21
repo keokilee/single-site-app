@@ -1,4 +1,4 @@
-import whitelist from 'app/whitelist'
+import whitelist from 'browser/whitelist'
 import expect from 'expect'
 
 describe('whitelist', () => {

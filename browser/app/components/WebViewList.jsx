@@ -8,7 +8,7 @@ import {
   setFavicon,
   setLoading,
   setTitle
-} from 'app/actions'
+} from 'browser/actions'
 import WebView from './WebView'
 import styles from 'styles/webview.css'
 

@@ -3,7 +3,7 @@ import { remote } from 'electron'
 import { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import { addTab } from 'app/actions'
+import { addTab } from 'browser/actions'
 
 const { Menu, app } = remote
 

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import Header from 'app/components/Header'
+import Header from 'browser/components/Header'
 
 export default class Navigation extends Component {
   render () {

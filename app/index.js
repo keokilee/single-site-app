@@ -1,5 +1,5 @@
 import { app, BrowserWindow, crashReporter } from 'electron'
-import { handleMessages } from './messages'
+import { handleMessages } from 'app/messages'
 
 handleMessages()
 

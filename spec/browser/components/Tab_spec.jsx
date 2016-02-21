@@ -7,7 +7,7 @@ import {
 } from 'react-addons-test-utils'
 
 import expect, { spyOn } from 'expect'
-import Tab from 'app/components/tabs/Tab'
+import Tab from 'browser/components/tabs/Tab'
 
 describe('Tab', () => {
   const tabProps = {

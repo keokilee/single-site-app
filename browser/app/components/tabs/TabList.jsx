@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import cssModules from 'react-css-modules'
 import classnames from 'classnames'
 
-import Tab from 'app/components/tabs/Tab'
+import Tab from 'browser/components/tabs/Tab'
 import styles from 'styles/tabs/tabs.css'
 
 class TabList extends Component {

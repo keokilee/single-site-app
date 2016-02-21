@@ -1,47 +1,33 @@
 const webpack = require('webpack')
 const path = require('path')
 
+const ENV = process.env.NODE_ENV || 'development'
+
+const APP_DIR = path.join(process.cwd(), 'app')
 const BROWSER_DIR = path.join(process.cwd(), 'browser', 'app')
 const STYLES_DIR = path.join(process.cwd(), 'browser', 'styles')
 
 module.exports = {
   context: process.cwd(),
-  debug: true,
+  debug: ENV !== 'production',
   devtool: 'eval',
-  entry: [
-    'webpack-hot-middleware/client',
-    './browser/app/entry.jsx'
-  ],
   module: {
     preLoaders: [{
       test: /\.jsx?$/,
-      loader: 'eslint',
-      include: BROWSER_DIR
+      exclude: /node_modules/,
+      loader: 'eslint'
     }],
     loaders: [{
       test: /\.jsx?$/,
-      include: BROWSER_DIR,
+      exclude: /node_modules/,
       loader: 'babel'
-    }, {
-      test: /\.css$/,
-      loaders: [
-        'style',
-        'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-        'postcss'
-      ]
     }]
   },
-  output: {
-    filename: 'bundle.js',
-    path: path.join(process.cwd(), 'build'),
-    publicPath: '/assets/'
-  },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.ExternalsPlugin('commonjs', ['electron', ...Object.keys(process.binding('natives'))]),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
+      'process.env.NODE_ENV': JSON.stringify(ENV)
     })
   ],
   postcss: (compiler) => [
@@ -60,8 +46,10 @@ module.exports = {
   resolve: {
     extensions: ['', '.jsx', '.js'],
     alias: {
+      'app-constants': path.join(process.cwd(), 'constants'),
       'styles': STYLES_DIR,
-      'app': BROWSER_DIR
+      'browser': BROWSER_DIR,
+      'app': APP_DIR
     }
   }
 }

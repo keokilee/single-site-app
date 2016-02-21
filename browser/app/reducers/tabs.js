@@ -8,20 +8,16 @@ import {
   CHANGE_TAB,
   REMOVE_TAB,
   REMOVE_ACTIVE_TAB
-} from 'app/actions'
-
-const makeTabId = () => Math.floor(Date.now() / 1000)
+} from 'browser/actions'
 
 const makeNewTab = () => {
   return {
-    currentIndex: -1,
-    history: [],
     webview: null,
     favicon: null,
     url: null,
     loading: false,
     title: null,
-    id: makeTabId()
+    id: Math.floor(Date.now())
   }
 }
 

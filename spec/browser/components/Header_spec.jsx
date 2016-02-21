@@ -6,7 +6,7 @@ import {
 } from 'react-addons-test-utils'
 
 import expect, { spyOn } from 'expect'
-import Header from 'app/components/Header'
+import Header from 'browser/components/Header'
 
 describe('Header', () => {
   let headerProps = {

@@ -2,10 +2,10 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import cssModules from 'react-css-modules'
 
-import Navigation from 'app/containers/Navigation'
-import TabList from 'app/components/tabs/TabList'
-import WebViewList from 'app/components/WebViewList'
-import Menu from 'app/containers/Menu'
+import Navigation from 'browser/containers/Navigation'
+import TabList from 'browser/components/tabs/TabList'
+import WebViewList from 'browser/components/WebViewList'
+import Menu from 'browser/containers/Menu'
 
 import {
   getConfig,
@@ -13,7 +13,7 @@ import {
   removeTab,
   removeActiveTab,
   changeTab
-} from 'app/actions'
+} from 'browser/actions'
 
 import styles from 'styles/base.css'
 
