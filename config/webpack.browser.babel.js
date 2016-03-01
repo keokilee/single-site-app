@@ -63,7 +63,22 @@ switch (ENV) {
           test: /\.jsx?$/,
           loader: 'isparta',
           include: BROWSER_DIR
-        }]
+        }],
+        loaders: [
+          ...config.module.loaders,
+          {
+            test: /\.css$/,
+            loaders: [
+              'style',
+              'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+              'postcss'
+            ]
+          }, {
+            test: /\.jsx?$/,
+            include: path.join(process.cwd(), 'spec', 'browser'),
+            loader: 'babel'
+          }
+        ]
       },
       output: {}
     }
