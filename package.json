@@ -28,7 +28,7 @@
   "dependencies": {
     "classnames": "^2.2.0",
     "electron-prebuilt": "^0.36.2",
-    "lodash": "^4.3.0",
+    "lodash": "^4.6.0",
     "react": "^0.14.3",
     "react-css-modules": "^3.6.3",
     "react-dom": "^0.14.3",
@@ -92,6 +92,7 @@
     "style-loader": "^0.13.0",
     "webpack": "^1.12.13",
     "webpack-dev-middleware": "^1.2.0",
-    "webpack-hot-middleware": "^2.5.0"
+    "webpack-hot-middleware": "^2.5.0",
+    "webpack-sources": "^0.1.1"
   }
 }
