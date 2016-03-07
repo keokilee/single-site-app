@@ -61,9 +61,23 @@ switch (ENV) {
         ...config.module,
         preLoaders: [{
           test: /\.jsx?$/,
-          loader: 'isparta',
-          include: BROWSER_DIR
-        }]
+          loader: 'babel-istanbul',
+          include: BROWSER_DIR,
+          query: {
+            cacheDirectory: true
+          }
+        }],
+        loaders: [
+          ...config.module.loaders,
+          {
+            test: /\.css$/,
+            loaders: [
+              'style',
+              'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+              'postcss'
+            ]
+          }
+        ]
       },
       output: {}
     }
