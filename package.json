@@ -27,7 +27,7 @@
   "license": "ISC",
   "dependencies": {
     "classnames": "^2.2.0",
-    "electron-prebuilt": "^0.37.2",
+    "electron-prebuilt": "^1.1.2",
     "lodash": "^4.6.0",
     "react": "^0.14.3",
     "react-css-modules": "^3.6.3",
