@@ -64,7 +64,7 @@
     "expect": "^1.13.1",
     "express": "^4.13.3",
     "extract-text-webpack-plugin": "^1.0.0",
-    "karma": "0.13.21",
+    "karma": "1.1.0",
     "karma-coverage": "^0.5.5",
     "karma-electron-launcher": "0.1.0",
     "karma-mocha": "^0.2.1",
