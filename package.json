@@ -74,7 +74,7 @@
     "mocha": "^2.3.3",
     "nodemon": "^1.8.1",
     "postcss-browser-reporter": "^0.4.0",
-    "postcss-cssnext": "^2.4.0",
+    "postcss-cssnext": "^2.7.0",
     "postcss-font-magician": "^1.4.0",
     "postcss-import": "^8.0.2",
     "postcss-loader": "^0.8.0",
