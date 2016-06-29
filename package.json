@@ -88,7 +88,7 @@
     "redux-devtools-log-monitor": "^1.0.4",
     "redux-logger": "^2.5.0",
     "rimraf": "^2.5.0",
-    "source-map-support": "^0.4.0",
+    "source-map-support": "^0.4.1",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.13",
     "webpack-dev-middleware": "^1.2.0",
