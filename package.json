@@ -81,7 +81,7 @@
     "postcss-reporter": "^1.3.1",
     "postcss-url": "^5.1.0",
     "proxyquire": "^1.7.3",
-    "react-addons-test-utils": "^0.14.2",
+    "react-addons-test-utils": "^15.2.0",
     "redux-devtools": "^3.0.0",
     "redux-devtools-chart-monitor": "^1.1.3",
     "redux-devtools-dock-monitor": "^1.1.0",
